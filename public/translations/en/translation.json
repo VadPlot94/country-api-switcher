@@ -1,0 +1,33 @@
+{
+  "i18n.header.WhereInWorld": "Where in the world?",
+  "i18n.header.LightMode": "Light Mode",
+  "i18n.header.DarkMode": "Dark Mode",
+
+  "i18n.countryCard.OpenCountryDescription": "Open {0} country description",
+  "i18n.countryCard.Population": "Population",
+  "i18n.countryCard.Region": "Region",
+  "i18n.countryCard.Capital": "Capital",
+
+  "i18n.countryPage.BackButton": "Back",
+  "i18n.countryPage.NativeName": "Native Name",
+  "i18n.countryPage.SubRegion": "Sub Region",
+  "i18n.countryPage.TopLevelDomain": "Top Level Domain",
+  "i18n.countryPage.Currencies": "Currencies",
+  "i18n.countryPage.Languages": "Languages",
+  "i18n.countryPage.BorderCountries": "Border Countries",
+
+  "i18n.filter.FilterByRegion": "Filter by region",
+  "i18n.filter.AllRegions": "--All--",
+  "i18n.filter.Americas": "Americas",
+  "i18n.filter.Asia": "Asia",
+  "i18n.filter.Europe": "Europe",
+  "i18n.filter.Oceania": "Oceania",
+  "i18n.filter.Africa": "Africa",
+  "i18n.filter.Antarctic": "Antarctic",
+
+  "i18n.search.SearchForCountryPlaceholder": "Search for a country...",
+
+  "i18n.notificationBanner.ErrorGetCountryListAPI": "Failed to get countries list from server",
+  "i18n.notificationBanner.CountriesListEmpty": "Countries list is empty",
+  "i18n.notificationBanner.NoMatchingCountries": "No matching countries found"
+}

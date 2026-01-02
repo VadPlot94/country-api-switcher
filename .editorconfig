@@ -1,0 +1,29 @@
+# EditorConfig is applied top-to-bottom: general rules first, then specific overrides
+root = true
+
+[*]                                 # Applies to all files
+indent_style = space                # Use spaces for indentation (not tabs)
+indent_size = 2                     # 2 spaces per indentation level
+end_of_line = lf                    # Line endings: LF (Unix-style, recommended for Git)
+charset = utf-8                     # File encoding: UTF-8
+trim_trailing_whitespace = true     # Remove trailing whitespace at the end of lines
+insert_final_newline = true         # Ensure file ends with a newline
+
+[*.{js,jsx,ts,tsx}]                 # JavaScript and TypeScript files
+indent_size = 2
+quote_type = single                 # Use single quotes (supported by some EditorConfig plugins)
+
+[*.{json,yml,yaml,md}]              # JSON, YAML, and Markdown files
+indent_size = 2
+
+[*.md]                              # Markdown files only
+trim_trailing_whitespace = false    # Do not trim trailing whitespace (important for Markdown formatting)
+
+[package.json]
+indent_size = 2
+
+[*.css,*.scss,*.less]               # Stylesheet files
+indent_size = 2
+
+[Makefile]                          # Makefiles
+indent_style = tab                  # Use tabs for Makefiles (standard convention)

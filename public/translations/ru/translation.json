@@ -1,0 +1,33 @@
+{
+  "i18n.header.WhereInWorld": "Где в мире?",
+  "i18n.header.LightMode": "Светлая тема",
+  "i18n.header.DarkMode": "Темная тема",
+
+  "i18n.countryCard.OpenCountryDescription": "Открыть описание страны: {0}",
+  "i18n.countryCard.Population": "Популяция",
+  "i18n.countryCard.Region": "Регион",
+  "i18n.countryCard.Capital": "Столица",
+
+  "i18n.countryPage.BackButton": "Назад",
+  "i18n.countryPage.NativeName": "Родное Имя",
+  "i18n.countryPage.SubRegion": "Суб Регион",
+  "i18n.countryPage.TopLevelDomain": "Домен первого уровня",
+  "i18n.countryPage.Currencies": "Валюта",
+  "i18n.countryPage.Languages": "Языки",
+  "i18n.countryPage.BorderCountries": "Страны соседи",
+
+  "i18n.filter.FilterByRegion": "Фильтр по региону",
+  "i18n.filter.AllRegions": "--Все регионы--",
+  "i18n.filter.Americas": "Америка",
+  "i18n.filter.Asia": "Азия",
+  "i18n.filter.Europe": "Европа",
+  "i18n.filter.Oceania": "Океания",
+  "i18n.filter.Africa": "Африка",
+  "i18n.filter.Antarctic": "Антарктика",
+
+  "i18n.search.SearchForCountryPlaceholder": "Поиск по стране...",
+
+  "i18n.notificationBanner.ErrorGetCountryListAPI": "Ошибка при получении списка стран с сервера",
+  "i18n.notificationBanner.CountriesListEmpty": "Список стран пуст",
+  "i18n.notificationBanner.NoMatchingCountries": "Нет совпадений по странам"
+}

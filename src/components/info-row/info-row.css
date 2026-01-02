@@ -1,0 +1,37 @@
+.info-row {
+  font-size: 14px;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  gap: 10px;
+  min-width: 100px;
+}
+
+.info-row:has(.info-row__loader-container) {
+  align-items: center;
+}
+
+.info-row__title {
+  font-weight: 600;
+  min-width: fit-content;
+}
+
+.info-row__title-value {
+  user-select: text;
+  cursor: default;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.info-row__loader-container {
+  width: 20px;
+  margin: 3px 0 0 0;
+}
