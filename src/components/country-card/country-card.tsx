@@ -8,6 +8,7 @@ import './country-card.css';
 import { useTranslation } from 'react-i18next';
 import countryService from '../../services/country.service';
 import i18n from '../../i18n/i18n-setup';
+import constants from '../../services/constants.service';
 
 export interface ICountryCardProps {
   country: ICountry;
@@ -40,6 +41,7 @@ export default memo(function CountryCard(props: ICountryCardProps) {
     <div
       className="country-card"
       tabIndex={0}
+      style={{ '--country-card-height': `${constants.CountryCardElementHeight}px` } as React.CSSProperties}
       onKeyDown={e => onCountryCardKeyDown(e, country)}
     >
       <img

@@ -45,6 +45,8 @@ class ConstantsService {
     ur: 'urd', // Urdu
     zh: 'zho', // Chinese
   };
+
+  public CountryCardElementHeight = 345;
 }
 
 const constants = new ConstantsService();

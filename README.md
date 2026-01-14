@@ -112,3 +112,4 @@ https://gitlab.com/frontendmentor4274851/country-api-switcher/pages#overview
 - virtual scroll
 - unit tests (RTK)
 - service worker (- OfflineFlags)
+- preload flags for offline work

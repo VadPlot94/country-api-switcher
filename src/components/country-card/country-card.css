@@ -1,6 +1,6 @@
 .country-card {
   width: var(--country-width);
-  height: 345px;
+  height: var(--country-card-height);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-elements);
   transition:
