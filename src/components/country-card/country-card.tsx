@@ -41,7 +41,11 @@ export default memo(function CountryCard(props: ICountryCardProps) {
     <div
       className="country-card"
       tabIndex={0}
-      style={{ '--country-card-height': `${constants.CountryCardElementHeight}px` } as React.CSSProperties}
+      style={
+        {
+          '--country-card-height': `${constants.CountryCardElementHeight}px`,
+        } as React.CSSProperties
+      }
       onKeyDown={e => onCountryCardKeyDown(e, country)}
     >
       <img

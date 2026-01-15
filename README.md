@@ -12,6 +12,7 @@ npm install
 
 Start the dev server, and the app will be available at [http://localhost:3000](http://localhost:3000).
 http://localhost:3000/ru http://localhost:3000/?lng=ru
+http://localhost:3000/?virtualTable=true
 
 ```bash
 npm run dev
@@ -50,6 +51,7 @@ https://gitlab.com/frontendmentor4274851/country-api-switcher/pages#overview
 
 - RsBuild (https://rsbuild.rs)
 - Tanstack (manage/request API data instead fetch)
+- Tanstack virtual (for virtual country list scrolling)
 - Tanstack query devtools (invalidate/reload/trigger errors for getting API data)
 - Redux toolkit (state management inside React)
 - Redux dev tools (similar as Tanstack query devtools - but we invalidate here not API data but inner state of React application)
@@ -106,6 +108,9 @@ https://gitlab.com/frontendmentor4274851/country-api-switcher/pages#overview
 - SCSS + BEM
   - try on two top files only
 - Accessibility (partially)
+- Virtual scrolling
+  - Small attempt
+  - Can be opened with ?virtualTable=true => http://localhost:3000/?virtualTable=true
 
 ## TODO
 
@@ -113,3 +118,4 @@ https://gitlab.com/frontendmentor4274851/country-api-switcher/pages#overview
 - unit tests (RTK)
 - service worker (- OfflineFlags)
 - preload flags for offline work
+- react router

@@ -7,6 +7,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import queryClient from './tanstack-query-client/tanstack-client';
 import fileClient from './request-clients/file-client';
+import { BrowserRouter } from 'react-router-dom';
 import './index.scss';
 
 const rootEl = document.getElementById('root');
@@ -16,7 +17,9 @@ if (rootEl) {
     <React.StrictMode>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <App />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
           {/* Devtools only in dev */}
           {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
         </QueryClientProvider>

@@ -7,8 +7,11 @@ import Header from '../header/header';
 import Search from '../search/search';
 import './app.scss';
 import '../../i18n/i18n-setup';
+import useQueryParams from '../../custom-hooks/useQueryParams';
+import VirtualCountriesLayout from '../virtual-countries-layout/virtual-countries-layout';
 
 const App = () => {
+  const { getQueryParam } = useQueryParams();
   const theme = useAppSelector(state => state.app.theme);
   const selectedCountry = useAppSelector(state => state.app.selectedCountry);
   helperService.updateHtmlTheme(theme);
@@ -32,7 +35,11 @@ const App = () => {
               <FilterDropdown />
             </div>
             <div className="app__container-content">
-              <CountriesLayout />
+              {getQueryParam('virtualTable', false) ? (
+                <VirtualCountriesLayout />
+              ) : (
+                <CountriesLayout />
+              )}
             </div>
           </div>
         )}
