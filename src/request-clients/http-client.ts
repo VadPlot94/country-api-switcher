@@ -13,11 +13,11 @@ class HttpClient implements IRequestClient {
     );
   }
 
-  public callCountryByName(name: string): Promise<ICountry> {
+  public callCountryByCca3Code(countryCca3Code: string): Promise<ICountry> {
     return fetch(
-      constants.CountriesAPIUrls.CountryByName.replace(
-        '{name}',
-        encodeURIComponent(name),
+      constants.CountriesAPIUrls.CountryByCca3Code.replace(
+        '{code}',
+        encodeURIComponent(countryCca3Code),
       ),
     )
       .then(resp => resp?.json())

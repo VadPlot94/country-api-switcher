@@ -19,11 +19,11 @@ class FileClient implements IRequestClient {
 
     return Promise.resolve(countryList as unknown as ICountry[]);
   }
-  public callCountryByName(name: string): Promise<ICountry> {
+  public callCountryByCca3Code(countryCca3Code: string): Promise<ICountry> {
     return Promise.resolve(
       queryClient
         .getQueryData<ICountry[]>(['countryFileList'])
-        ?.find(country => country.name.common === name),
+        ?.find(country => country.cca3 === countryCca3Code),
     );
   }
 
@@ -36,7 +36,12 @@ class FileClient implements IRequestClient {
 
   private async fetchAllCountriesFromFile(): Promise<ICountry[]> {
     try {
-      const response = await fetch(constants.CountriesJsonFilePath);
+      const response = await fetch(constants.CountriesJsonFilePath, {
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        }),
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

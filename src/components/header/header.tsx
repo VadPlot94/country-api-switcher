@@ -6,11 +6,13 @@ import { MoonIcon } from '@heroicons/react/24/solid';
 import { SunIcon } from '@heroicons/react/24/outline';
 import { MemoIcon } from '../memo-icon/memo-icon';
 import { useTranslation } from 'react-i18next';
+import helperService from '../../services/helper.service';
 
 export default function Header() {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const theme = useAppSelector(state => state.app.theme);
+  helperService.updateHtmlTheme(theme);
 
   const handleToggleAppTheme = () => {
     dispatch(toggleAppTheme());

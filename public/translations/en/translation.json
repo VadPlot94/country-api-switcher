@@ -29,5 +29,7 @@
 
   "i18n.notificationBanner.ErrorGetCountryListAPI": "Failed to get countries list from server",
   "i18n.notificationBanner.CountriesListEmpty": "Countries list is empty",
-  "i18n.notificationBanner.NoMatchingCountries": "No matching countries found"
+  "i18n.notificationBanner.NoMatchingCountries": "No matching countries found",
+
+  "i18n.notFoundPage.404NotFound": "404 Not Found"
 }

@@ -6,8 +6,8 @@
   width: 100%;
 
   &__container-header *:not(.filter-dropdown__item:hover),
-  .countries-layout *:not(.notification-banner),
-  .virtual-countries-layout .country-card,
+  .countries-list *:not(.notification-banner),
+  .virtual-countries-list .country-card,
   .country-page .country-page__back-button,
   .country-page .country-page__border-country-button,
   .header {
@@ -54,7 +54,7 @@
     }
   }
 
-  @mixin setLoaderContainer() {
+  @mixin setFixedContainer() {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -62,17 +62,23 @@
     left: 0;
   }
 
+  @include element(container) {
+    &:has(> .not-found-page) {
+      @include setFixedContainer();
+    }
+  }
+
   @include element(container-content) {
     display: grid;
 
     &:has(> .loader-dots) {
-      @include setLoaderContainer();
+      @include setFixedContainer();
     }
   }
 
   @include element(country-page-container) {
     &:has(> .loader-dots) {
-      @include setLoaderContainer();
+      @include setFixedContainer();
     }
   }
 

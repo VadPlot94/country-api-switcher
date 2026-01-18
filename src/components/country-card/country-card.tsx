@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { useAppDispatch } from '../../hooks';
 import type { ICountry } from '../../providers/types';
-import { setSelectedCountry } from '../../slices/app-slice';
 import { setSelectedRegion } from '../../slices/filter-dropdown-slice';
 import { setInputValue, setSearchQuery } from '../../slices/search-slice';
 import './country-card.css';
@@ -9,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import countryService from '../../services/country.service';
 import i18n from '../../i18n/i18n-setup';
 import constants from '../../services/constants.service';
+import navigationService from '../../services/navigation.service';
 
 export interface ICountryCardProps {
   country: ICountry;
@@ -20,11 +20,10 @@ export default memo(function CountryCard(props: ICountryCardProps) {
   const { t } = useTranslation();
 
   const handleCountryClick = (country: ICountry) => {
-    dispatch(setSelectedCountry(country));
-    dispatch(setSelectedRegion(null));
     dispatch(setSelectedRegion(null));
     dispatch(setSearchQuery(''));
     dispatch(setInputValue(''));
+    navigationService.navigateToCountry(country);
   };
 
   const onCountryCardKeyDown = (
@@ -53,11 +52,9 @@ export default memo(function CountryCard(props: ICountryCardProps) {
         alt={country.flags.alt}
         className="country-card__flag"
         onClick={() => handleCountryClick(country)}
-        title={t(
-          'i18n.countryCard.OpenCountryDescription'.replace(
-            '{0}',
-            countryService.getCountryNameLabel(country),
-          ),
+        title={t('i18n.countryCard.OpenCountryDescription').replace(
+          '{0}',
+          countryService.getCountryNameLabel(country),
         )}
       />
       <div className="country-card__info-container">

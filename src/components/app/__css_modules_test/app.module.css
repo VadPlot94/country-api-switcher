@@ -10,7 +10,7 @@ html {
 }
 
 .app .app__container-header *:not(.filter-dropdown__item:hover),
-.app .countries-layout *:not(.notification-banner),
+.app .countries-list *:not(.notification-banner),
 .app .country-page .country-page__back-button,
 .app .country-page .country-page__border-country-button,
 .app .header {
@@ -58,7 +58,8 @@ html {
 }
 
 .app__container-content:has(> .loader-dots),
-.app__country-page-container1:has(> .loader-dots) {
+.app__country-page-container:has(> .loader-dots),
+.app__container:has(> .not-found-page) {
   position: fixed;
   width: 100%;
   height: 100%;

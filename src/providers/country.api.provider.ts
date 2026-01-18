@@ -39,17 +39,21 @@ class CountryApiProvider {
     return countriesList;
   }
 
-  public async getCountryDescriptionByName(name: string): Promise<ICountry> {
-    const countryInfo = await this.getCountryByName(name);
+  public async getCountryDescriptionCca3Code(
+    countryCca3Code: string,
+  ): Promise<ICountry> {
+    const countryInfo = await this.getCountryByCca3Code(countryCca3Code);
     if (!countryInfo) {
       throw new Error('Failed to get country info');
     }
     return countryInfo;
   }
 
-  private async getCountryByName(name: string): Promise<ICountry> {
+  private async getCountryByCca3Code(
+    countryCca3Code: string,
+  ): Promise<ICountry> {
     const country: ICountry = await this.client
-      .callCountryByName(name)
+      .callCountryByCca3Code(countryCca3Code)
       .catch(err => {
         logger.logError(err);
         return null;

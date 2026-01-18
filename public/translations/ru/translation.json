@@ -29,5 +29,7 @@
 
   "i18n.notificationBanner.ErrorGetCountryListAPI": "Ошибка при получении списка стран с сервера",
   "i18n.notificationBanner.CountriesListEmpty": "Список стран пуст",
-  "i18n.notificationBanner.NoMatchingCountries": "Нет совпадений по странам"
+  "i18n.notificationBanner.NoMatchingCountries": "Нет совпадений по странам",
+
+  "i18n.notFoundPage.404NotFound": "404 Страница не найдена"
 }

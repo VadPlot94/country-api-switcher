@@ -1,0 +1,26 @@
+import FilterDropdown from '../../filter/filter-dropdown';
+import Search from '../../search/search';
+import '../app.scss';
+import '../../../i18n/i18n-setup';
+import { useSearchParams } from 'react-router-dom';
+import CountriesList from '../../countries-list/countries-list';
+import VirtualCountriesList from '../../countries-list/virtual/virtual-countries-list';
+
+const MainPageLayout = () => {
+  const [searchParams] = useSearchParams();
+
+  const isVirtualTable = searchParams.get('virtualTable') === 'true';
+  return (
+    <div className="app__countries-layout-container">
+      <div className="app__container-header">
+        <Search />
+        <FilterDropdown />
+      </div>
+      <div className="app__container-content">
+        {isVirtualTable ? <VirtualCountriesList /> : <CountriesList />}
+      </div>
+    </div>
+  );
+};
+
+export default MainPageLayout;

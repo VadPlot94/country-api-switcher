@@ -1,22 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
-import CountryCard from '../country-card/country-card.tsx';
-import './virtual-countries-layout.css';
-import { useAppSelector } from '../../hooks.ts';
+import CountryCard from '../../country-card/country-card.tsx';
+import './virtual-countries-list.css';
+import { useAppSelector } from '../../../hooks.ts';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import Loader from '../loader/loader.tsx';
-import NotificationBanner from '../notification-banner/notification-banner.tsx';
+import Loader from '../../loader/loader.tsx';
+import NotificationBanner from '../../notification-banner/notification-banner.tsx';
 import {
   ExclamationCircleIcon,
   ExclamationTriangleIcon,
 } from '@heroicons/react/24/solid';
-import countryService from '../../services/country.service.ts';
-import type { ICountry } from '../../providers/types.ts';
+import countryService from '../../../services/country.service.ts';
+import type { ICountry } from '../../../providers/types.ts';
 import { useTranslation } from 'react-i18next';
 import { useWindowVirtualizer } from '@tanstack/react-virtual';
-import constants from '../../services/constants.service.ts';
+import constants from '../../../services/constants.service.ts';
 import { useMediaQuery } from 'usehooks-ts';
 
-export default function CountriesLayout() {
+export default function VirtualCountriesList() {
   const selectedRegion = useAppSelector(
     state => state.filterDropdown.selectedRegion,
   );
@@ -81,7 +81,9 @@ export default function CountriesLayout() {
     return Math.max(1, itemsPerRow);
   }, [countriesListAfterSelection, containerWidth]);
 
-  const rowCount = countriesListAfterSelection?.length ? Math.ceil(countriesListAfterSelection?.length / columnCount) : 0;
+  const rowCount = countriesListAfterSelection?.length
+    ? Math.ceil(countriesListAfterSelection?.length / columnCount)
+    : 0;
   const rowHeight = constants.CountryCardElementHeight + gap;
 
   useLayoutEffect(() => {
@@ -89,7 +91,9 @@ export default function CountriesLayout() {
       return;
     }
     const realContainerHeight =
-      Math.floor((countriesListAfterSelection.length / columnCount) * rowHeight) - 270;
+      Math.floor(
+        (countriesListAfterSelection.length / columnCount) * rowHeight,
+      ) - 270;
     const fullContainerHeight = `${realContainerHeight}px`;
     document.documentElement.style.height = fullContainerHeight;
     document.body.style.height = fullContainerHeight;
@@ -137,7 +141,7 @@ export default function CountriesLayout() {
 
   return (
     <div
-      className="virtual-countries-layout"
+      className="virtual-countries-list"
       ref={ref => {
         countryRowContainerRef.current = ref;
         if (ref) {
@@ -163,14 +167,16 @@ export default function CountriesLayout() {
               height: `${virtualRow.size}px`,
               transform: `translateY(${virtualRow.start}px)`,
               display: 'grid',
-              ...(isMobile ? {
-                gridTemplateColumns: 'auto',
-                alignItems: 'center',
-                justifyContent: 'center',
-              } : {
-                gridTemplateColumns: `repeat(${columnCount}, minmax(var(--country-width), auto))`,
-                justifyContent: 'space-between',
-              }),
+              ...(isMobile
+                ? {
+                    gridTemplateColumns: 'auto',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }
+                : {
+                    gridTemplateColumns: `repeat(${columnCount}, minmax(var(--country-width), auto))`,
+                    justifyContent: 'space-between',
+                  }),
             }}
           >
             {rowCountries.map(country => (

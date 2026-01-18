@@ -1,4 +1,4 @@
-.countries-layout {
+.countries-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(var(--country-width), auto));
   align-items: start;
@@ -6,22 +6,11 @@
   justify-content: space-between;
 }
 
-.countries-layout {
-  width: 100%;
-  min-height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
 @media (max-width: 660px) {
-  .countries-layout {
+  .countries-list {
     grid-template-columns: auto;
     align-items: center;
     justify-content: center;
     gap: 25px;
   }
-}
-
-.virtual-countries-layout {
-  position: relative;
 }

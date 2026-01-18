@@ -1,0 +1,12 @@
+.not-found-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-elements-background);
+}
+
+.not-found-page .notification-banner__content {
+  box-shadow: unset;
+}

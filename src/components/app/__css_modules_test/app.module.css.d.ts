@@ -6,7 +6,7 @@ declare const styles: {
   readonly 'app__countries-layout-container': string;
   readonly 'app__country-page-container': string;
   readonly 'app__country-page-container1': string;
-  readonly 'countries-layout': string;
+  readonly 'countries-list': string;
   readonly 'country-page': string;
   readonly 'country-page__back-button': string;
   readonly 'country-page__border-country-button': string;

@@ -12,7 +12,7 @@ i18n
   .init({
     fallbackLng: constants.DefaultLanguage,
     supportedLngs: [constants.DefaultLanguage, 'ru'],
-
+    // debug: true -> include 'cimode' in supportedLngs
     debug: import.meta.env.DEV,
     interpolation: {
       escapeValue: false,

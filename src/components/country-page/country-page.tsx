@@ -1,6 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { useAppDispatch } from '../../hooks';
-import { setSelectedCountry } from '../../slices/app-slice';
 import './country-page.css';
 import { ArrowLongLeftIcon } from '@heroicons/react/24/solid';
 import countryApiProvider, {
@@ -13,42 +11,40 @@ import countryService from '../../services/country.service';
 import { MemoIcon } from '../memo-icon/memo-icon';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n/i18n-setup';
+import navigationService from '../../services/navigation.service';
 
 export interface ICountryPageProps {
-  country: ICountry;
+  countryData: ICountry;
+  countryCode: string;
+  isOpenFromUrl: boolean;
 }
 
 export default function CountryPage(props: ICountryPageProps) {
-  const { country: currentCountry } = props;
+  const { countryData, countryCode, isOpenFromUrl } = props;
 
-  const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
   const { data: countryList } = useQuery<ICountry[]>({
     queryKey: ['countryList'],
   });
   const { data: country, isFetching } = useQuery<ICountry>({
-    queryKey: ['countryByName', countryService.getCountryName(currentCountry)],
-    placeholderData: currentCountry,
+    queryKey: ['countryByCca3Code', countryCode],
+    placeholderData: countryData,
     queryFn: () =>
       countryApiProvider
-        .getCountryDescriptionByName(
-          countryService.getCountryName(currentCountry),
-        )
+        .getCountryDescriptionCca3Code(countryCode)
         .catch(() =>
-          countryFileProvider.getCountryDescriptionByName(
-            countryService.getCountryName(currentCountry),
-          ),
+          countryFileProvider.getCountryDescriptionCca3Code(countryCode),
         ),
     refetchOnMount: true,
   });
 
   const handleBackButtonClick = () => {
-    dispatch(setSelectedCountry(null));
+    navigationService.navigateToMainPage(isOpenFromUrl);
   };
 
   const handleBorderCountryClick = (country: ICountry) => {
-    dispatch(setSelectedCountry(country));
+    navigationService.navigateToCountry(country, true);
   };
 
   if (!country) {

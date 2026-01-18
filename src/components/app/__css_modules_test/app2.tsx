@@ -1,6 +1,6 @@
 import { useAppSelector } from '../../../hooks';
 import helperService from '../../../services/helper.service';
-import CountriesLayout from '../../countries-layout/countries-layout';
+import CountriesLayout from '../../countries-list/countries-list';
 import CountryPage from '../../country-page/country-page';
 import FilterDropdown from '../../filter/filter-dropdown';
 import Header from '../../header/header';

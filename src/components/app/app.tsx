@@ -1,20 +1,44 @@
-import { useAppSelector } from '../../hooks';
-import helperService from '../../services/helper.service';
-import CountriesLayout from '../countries-layout/countries-layout';
-import CountryPage from '../country-page/country-page';
-import FilterDropdown from '../filter/filter-dropdown';
 import Header from '../header/header';
-import Search from '../search/search';
 import './app.scss';
 import '../../i18n/i18n-setup';
-import useQueryParams from '../../custom-hooks/useQueryParams';
-import VirtualCountriesLayout from '../virtual-countries-layout/virtual-countries-layout';
+import { useParams, useNavigate, useLocation, Outlet } from 'react-router-dom';
+import { useCallback, useEffect } from 'react';
+import i18n from '../../i18n/i18n-setup';
+import constants from '../../services/constants.service';
+import navigationService from '../../services/navigation.service';
 
 const App = () => {
-  const { getQueryParam } = useQueryParams();
-  const theme = useAppSelector(state => state.app.theme);
-  const selectedCountry = useAppSelector(state => state.app.selectedCountry);
-  helperService.updateHtmlTheme(theme);
+  const urlParams = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    navigationService.init(navigate);
+  }, [navigate]);
+
+  const validateAndCreateNewPathWithLang = useCallback(() => {
+    const isLangSupported = (i18n.options.supportedLngs || []).includes(
+      urlParams.lang || constants.DefaultLanguage,
+    );
+    const newPath = !isLangSupported
+      ? '/' +
+        location.pathname.split('/').slice(2).filter(Boolean).join('/') +
+        location.search
+      : null;
+    return newPath;
+  }, [urlParams.lang, location.pathname, location.search]);
+
+  useEffect(() => {
+    const newPath = validateAndCreateNewPathWithLang();
+    if (newPath) {
+      navigate(newPath, { replace: true });
+    }
+  }, [
+    validateAndCreateNewPathWithLang,
+    navigate,
+    location.pathname,
+    location.search,
+  ]);
 
   return (
     <div
@@ -24,25 +48,7 @@ const App = () => {
     >
       <Header />
       <div className="app__container">
-        {selectedCountry ? (
-          <div className="app__country-page-container">
-            <CountryPage country={selectedCountry} />
-          </div>
-        ) : (
-          <div className="app__countries-layout-container">
-            <div className="app__container-header">
-              <Search />
-              <FilterDropdown />
-            </div>
-            <div className="app__container-content">
-              {getQueryParam('virtualTable', false) ? (
-                <VirtualCountriesLayout />
-              ) : (
-                <CountriesLayout />
-              )}
-            </div>
-          </div>
-        )}
+        <Outlet />
       </div>
     </div>
   );

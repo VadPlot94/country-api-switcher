@@ -10,9 +10,9 @@ class ConstantsService {
 
   public CountriesAPIUrls = {
     AllCountries: `${this.APICountriesUrl}${this.CountriesApiVersion}/all?fields=`,
-    CountryByName: `${this.APICountriesUrl}${this.CountriesApiVersion}/name/{name}?fullText=true`,
+    CountryByCca3Code: `${this.APICountriesUrl}${this.CountriesApiVersion}/alpha/{code}`,
   };
-  public CountriesJsonFilePath = './assets/countries.v3.1.json';
+  public CountriesJsonFilePath = '/assets/countries.v3.1.json';
   // API forbid request more then 10 fields at once due to performance impact
   public MaxApiFieldsCount = 10;
 

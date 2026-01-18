@@ -7,8 +7,11 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import queryClient from './tanstack-query-client/tanstack-client';
 import fileClient from './request-clients/file-client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.scss';
+import CountryPageLayout from './components/app/app-layouts/country-page-layout';
+import MainPageLayout from './components/app/app-layouts/main-page-layout';
+import NotFoundPage from './components/not-found-page/not-found-page';
 
 const rootEl = document.getElementById('root');
 if (rootEl) {
@@ -18,7 +21,22 @@ if (rootEl) {
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
-            <App />
+            <Routes>
+              <Route element={<App />}>
+                <Route
+                  path="/:lang?"
+                  element={<MainPageLayout />}
+                />
+                <Route
+                  path=":lang?/country/:cca3"
+                  element={<CountryPageLayout />}
+                />
+                <Route
+                  path="*"
+                  element={<NotFoundPage />}
+                />
+              </Route>
+            </Routes>
           </BrowserRouter>
           {/* Devtools only in dev */}
           {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}

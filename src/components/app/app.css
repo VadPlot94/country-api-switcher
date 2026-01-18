@@ -5,8 +5,8 @@
 }
 
 .app .app__container-header *:not(.filter-dropdown__item:hover),
-.app .countries-layout *:not(.notification-banner),
-.app .virtual-countries-layout .country-card,
+.app .countries-list *:not(.notification-banner),
+.app .virtual-countries-list .country-card,
 .app .country-page .country-page__back-button,
 .app .country-page .country-page__border-country-button,
 .app .header {
