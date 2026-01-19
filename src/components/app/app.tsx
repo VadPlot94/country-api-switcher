@@ -3,9 +3,8 @@ import './app.scss';
 import '../../i18n/i18n-setup';
 import { useParams, useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useCallback, useEffect } from 'react';
-import i18n from '../../i18n/i18n-setup';
-import constants from '../../services/constants.service';
 import navigationService from '../../services/navigation.service';
+import urlService from '../../services/url.service';
 
 const App = () => {
   const urlParams = useParams();
@@ -17,9 +16,10 @@ const App = () => {
   }, [navigate]);
 
   const validateAndCreateNewPathWithLang = useCallback(() => {
-    const isLangSupported = (i18n.options.supportedLngs || []).includes(
-      urlParams.lang || constants.DefaultLanguage,
+    const { success: isLangSupported } = urlService.validateLangParam(
+      urlParams.lang,
     );
+
     const newPath = !isLangSupported
       ? '/' +
         location.pathname.split('/').slice(2).filter(Boolean).join('/') +

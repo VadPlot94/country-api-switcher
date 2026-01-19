@@ -45,23 +45,26 @@ class CountryService {
   }
 
   public getBorderCountries(
-    countryList: ICountry[],
+    countriesList: ICountry[],
     borderCodes: ICountry['borders'],
   ): ICountry[] {
     return (
       borderCodes?.map?.(borderCode =>
-        countryList?.find(({ cca3 }) => cca3 === borderCode),
+        countriesList?.find(({ cca3 }) => cca3 === borderCode),
       ) || []
     );
   }
 
-  public getRegions(countryList: ICountry[]) {
-    return countryList?.reduce<string[]>((acc: string[], country: ICountry) => {
-      if (country.region && !acc.includes(country.region)) {
-        acc.push(country.region);
-      }
-      return acc;
-    }, []);
+  public getRegions(countriesList: ICountry[]) {
+    return countriesList?.reduce<string[]>(
+      (acc: string[], country: ICountry) => {
+        if (country.region && !acc.includes(country.region)) {
+          acc.push(country.region);
+        }
+        return acc;
+      },
+      [],
+    );
   }
 }
 

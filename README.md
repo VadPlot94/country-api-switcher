@@ -60,6 +60,8 @@ https://gitlab.com/frontendmentor4274851/country-api-switcher/pages#overview
 - CSS Modules (try a bit/not implemented)
 - Heroicons (https://heroicons.com/mini)
 - BEM methodology for CSS
+- React Router
+- Zod - package for url params and query validation before usage
 
 ## Functional
 
@@ -67,10 +69,14 @@ https://gitlab.com/frontendmentor4274851/country-api-switcher/pages#overview
 - Search by country name
 - Filter by region
 - Open Country description
-- Navigate to country description through country borders
+- Navigate to country description through country borders buttons
 - Supported languages: en, ru
 - Offline work
 - Keyboard navigation (tab-index - using Tab button to interact with page)
+- Open pages with different urls:
+  - Main page (http://localhost:3000/ or http://localhost:3000/ru)
+  - Country description page (http://localhost:3000/country/ITA or http://localhost:3000/ru/country/ITA)
+  - Not found page (any other invalid url)
 
 ## Done
 
@@ -78,6 +84,10 @@ https://gitlab.com/frontendmentor4274851/country-api-switcher/pages#overview
 - React.memo, useCallback/useMemo hooks for optimization
 - Try redux middlewares
 - Offline mode
+- Security:
+  - search query - DOMPurify.sanitize - text search by countries
+  - searchInputValue placed back to <input value={searchInputValue}> - escaped by React automatically
+  - cca3 code from url - Zod package validation - send param to API
 - Try Inversify DI container:
   - Perfomance:
     - as soon as rsbuild have to process decorators (@inject, injectable)
@@ -87,7 +97,7 @@ https://gitlab.com/frontendmentor4274851/country-api-switcher/pages#overview
     - has conflicts with slicers and middleware of Redux
     - not allow to get dependencies from container in them
   - Solution: removed
-- internationalization (i18n)
+- Internationalization (i18n)
   - i18next — core
   - react-i18next — integration with React
   - i18next-browser-languagedetector — auto lang detector by several conditions (see docs. Useful if add query like https://site.com?lng=ru)
@@ -109,13 +119,24 @@ https://gitlab.com/frontendmentor4274851/country-api-switcher/pages#overview
   - try on two top files only
 - Accessibility (partially)
 - Virtual scrolling
-  - Small attempt
+  - Implement virtual country list using tanstack-virtual package -> useWindowVirtualizer
   - Can be opened with ?virtualTable=true => http://localhost:3000/?virtualTable=true
+- Routing
+  - implement react-router-dom package
+  - http://localhost:3000/ru -> http://localhost:3000/ru (rus)
+  - http://localhost:3000/en -> http://localhost:3000 (eng)
+  - http://localhost:3000/blabla -> http://localhost:3000 (eng)
+  - http://localhost:3000/blabla/bla -> Not found page
+  - http://localhost:3000/country/ITA -> http://localhost:3000/country/ITA (open Italy description) (eng)
+  - http://localhost:3000/ru/country/ITA -> http://localhost:3000/ru/country/ITA (rus)
+  - http://localhost:3000/en/country/ITA -> http://localhost:3000/country/ITA (eng)
+  - http://localhost:3000/fr/country/ITA -> http://localhost:3000/country/ITA (eng)
+
+  - Realization routes: main page, country page, not found page
+  - Transferring selected country through navigation state
+  - Redirection to supported languages
 
 ## TODO
 
-- virtual scroll
 - unit tests (RTK)
-- service worker (- OfflineFlags)
-- preload flags for offline work
-- react router
+- service worker (- OfflineFlags) - preload flags for offline work

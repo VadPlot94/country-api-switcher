@@ -18,7 +18,7 @@ export default function Search() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { isPending, isError } = useQuery<ICountry[]>({
-    queryKey: ['countryList'],
+    queryKey: ['countriesList'],
   });
 
   const debouncedDispatch = useDebouncedCallback((value: string) => {

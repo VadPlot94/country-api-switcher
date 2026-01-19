@@ -68,6 +68,14 @@
     }
   }
 
+  @include element(country-page-container) {
+    &:has(> .not-found-page),
+    &:has(> .notification-banner) {
+      display: grid;
+      @include setFixedContainer();
+    }
+  }
+
   @include element(container-content) {
     display: grid;
 

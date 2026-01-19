@@ -21,21 +21,21 @@ export default function CountriesList() {
 
   const searchQuery = useAppSelector(state => state.search.searchQuery);
   const {
-    data: countryList,
+    data: countriesList,
     isPending,
     isError,
   } = useQuery<ICountry[]>({
-    queryKey: ['countryList'],
+    queryKey: ['countriesList'],
   });
 
   const countriesListAfterSelection = useMemo(
     () =>
       countryService.getCountriesBySelection(
-        countryList,
+        countriesList,
         selectedRegion,
         searchQuery,
       ),
-    [countryList, selectedRegion, searchQuery],
+    [countriesList, selectedRegion, searchQuery],
   );
 
   if (isPending) {
@@ -44,7 +44,7 @@ export default function CountriesList() {
   if (isError) {
     return (
       <NotificationBanner
-        message={t('i18n.notificationBanner.ErrorGetCountryListAPI')}
+        message={t('i18n.notificationBanner.ErrorGetCountriesListAPI')}
         icon={ExclamationTriangleIcon}
         isError
         buttonName="Try Again"
@@ -52,7 +52,7 @@ export default function CountriesList() {
     );
   }
 
-  if (!countryService.isCountriesListAvailable(countryList)) {
+  if (!countryService.isCountriesListAvailable(countriesList)) {
     return (
       <NotificationBanner
         message={t('i18n.notificationBanner.CountriesListEmpty')}

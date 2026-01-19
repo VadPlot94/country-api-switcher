@@ -23,16 +23,16 @@ export default function FilterDropdown() {
   );
 
   const {
-    data: countryList = [],
+    data: countriesList = [],
     isPending,
     isError,
   } = useQuery<ICountry[]>({
-    queryKey: ['countryList'],
+    queryKey: ['countriesList'],
   });
 
   const regions = useMemo(
-    () => countryService.getRegions(countryList),
-    [countryList],
+    () => countryService.getRegions(countriesList),
+    [countriesList],
   );
 
   const handleSelect = (region: string) => {

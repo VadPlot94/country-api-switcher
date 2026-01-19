@@ -27,9 +27,10 @@
 
   "i18n.search.SearchForCountryPlaceholder": "Поиск по стране...",
 
-  "i18n.notificationBanner.ErrorGetCountryListAPI": "Ошибка при получении списка стран с сервера",
+  "i18n.notificationBanner.ErrorGetCountriesListAPI": "Ошибка при получении списка стран с сервера",
   "i18n.notificationBanner.CountriesListEmpty": "Список стран пуст",
   "i18n.notificationBanner.NoMatchingCountries": "Нет совпадений по странам",
+  "i18n.notificationBanner.ErrorGetCountryByCode": "Ошибка при получении описания страны по коду: `{0}` с сервера",
 
   "i18n.notFoundPage.404NotFound": "404 Страница не найдена"
 }

@@ -25,7 +25,7 @@ const queryClient = new QueryClient({
 // For TanStack Query devtools
 window.__TANSTACK_QUERY_CLIENT__ = queryClient;
 
-queryClient.setQueryDefaults(['countryList'], {
+queryClient.setQueryDefaults(['countriesList'], {
   queryFn: () => {
     const fields: CountryFields[] = [
       'name',

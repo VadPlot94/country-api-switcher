@@ -12,6 +12,10 @@ import { MemoIcon } from '../memo-icon/memo-icon';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n/i18n-setup';
 import navigationService from '../../services/navigation.service';
+import NotFoundPage from '../not-found-page/not-found-page';
+import NotificationBanner from '../notification-banner/notification-banner';
+import urlService from '../../services/url.service';
+import { useMemo } from 'react';
 
 export interface ICountryPageProps {
   countryData: ICountry;
@@ -24,10 +28,16 @@ export default function CountryPage(props: ICountryPageProps) {
 
   const { t } = useTranslation();
 
-  const { data: countryList } = useQuery<ICountry[]>({
-    queryKey: ['countryList'],
+  const { data: countriesList, isFetching: isCountriesListFetching } = useQuery<
+    ICountry[]
+  >({
+    queryKey: ['countriesList'],
   });
-  const { data: country, isFetching } = useQuery<ICountry>({
+  const {
+    data: country,
+    isFetching: isSelectedCountryFetching,
+    isError: isSelectedCountryError,
+  } = useQuery<ICountry>({
     queryKey: ['countryByCca3Code', countryCode],
     placeholderData: countryData,
     queryFn: () =>
@@ -47,12 +57,41 @@ export default function CountryPage(props: ICountryPageProps) {
     navigationService.navigateToCountry(country, true);
   };
 
+  const isValidCountryCode = useMemo(() => {
+    const { success } = urlService.validateCountryCodeParam(
+      countryCode,
+      countriesList,
+    );
+    return success;
+  }, [countryCode, countriesList]);
+
+  // country = null if countryData = null
+  // This happen when open direct url like: http://localhost:3000/country/blabla
   if (!country) {
+    if (isCountriesListFetching) {
+      return <Loader />;
+    }
+
+    if (!isValidCountryCode) {
+      return <NotFoundPage />;
+    }
+    if (!isSelectedCountryFetching && isSelectedCountryError) {
+      return (
+        <NotificationBanner
+          message={t('i18n.notificationBanner.ErrorGetCountryByCode').replace(
+            '{0}',
+            countryCode,
+          )}
+        />
+      );
+    }
+
+    // isSelectedCountryFetching = true
     return <Loader />;
   }
 
   const filteredBorders = countryService
-    .getBorderCountries(countryList, country.borders)
+    .getBorderCountries(countriesList, country.borders)
     .filter(country => !!country);
 
   return (
@@ -81,44 +120,44 @@ export default function CountryPage(props: ICountryPageProps) {
           <div className="country-page__full-description-container">
             <div className="country-page__description-column">
               <InfoRow
-                isFetching={isFetching}
+                isFetching={isSelectedCountryFetching}
                 title={t('i18n.countryPage.NativeName')}
                 value={country.name.official}
               />
               <InfoRow
-                isFetching={isFetching}
+                isFetching={isSelectedCountryFetching}
                 title={t('i18n.countryCard.Population')}
                 value={country.population.toLocaleString(i18n.language)}
               />
               <InfoRow
-                isFetching={isFetching}
+                isFetching={isSelectedCountryFetching}
                 title={t('i18n.countryCard.Region')}
                 value={country.region}
               />
               <InfoRow
-                isFetching={isFetching}
+                isFetching={isSelectedCountryFetching}
                 title={t('i18n.countryPage.SubRegion')}
                 value={country.subregion}
               />
               <InfoRow
-                isFetching={isFetching}
+                isFetching={isSelectedCountryFetching}
                 title={t('i18n.countryCard.Capital')}
                 value={country.capital?.join(', ')}
               />
             </div>
             <div className="country-page__description-column">
               <InfoRow
-                isFetching={isFetching}
+                isFetching={isSelectedCountryFetching}
                 title={t('i18n.countryPage.TopLevelDomain')}
                 value={country.tld?.join(', ')}
               />
               <InfoRow
-                isFetching={isFetching}
+                isFetching={isSelectedCountryFetching}
                 title={t('i18n.countryPage.Currencies')}
                 value={countryService.getCurrencies(country.currencies)}
               />
               <InfoRow
-                isFetching={isFetching}
+                isFetching={isSelectedCountryFetching}
                 title={t('i18n.countryPage.Languages')}
                 value={countryService.getLanguages(country.languages)}
               />
@@ -129,7 +168,7 @@ export default function CountryPage(props: ICountryPageProps) {
               {t('i18n.countryPage.BorderCountries')}:{' '}
             </span>
             <div className="country-page__border-countries-buttons-container">
-              {!isFetching ? (
+              {!isSelectedCountryFetching ? (
                 filteredBorders?.length ? (
                   filteredBorders.map(country => {
                     return (

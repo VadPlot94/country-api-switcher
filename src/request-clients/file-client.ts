@@ -13,11 +13,11 @@ class FileClient implements IRequestClient {
     const countries =
       queryClient.getQueryData<ICountry[]>(['countryFileList']) ?? [];
 
-    const countryList = countries.map(country =>
+    const countriesList = countries.map(country =>
       Object.fromEntries(fields.map(field => [field, country[field]])),
     );
 
-    return Promise.resolve(countryList as unknown as ICountry[]);
+    return Promise.resolve(countriesList as unknown as ICountry[]);
   }
   public callCountryByCca3Code(countryCca3Code: string): Promise<ICountry> {
     return Promise.resolve(
