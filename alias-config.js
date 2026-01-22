@@ -1,9 +1,9 @@
 import path from 'path';
 
-export const aliases = {
+export const rsBuildAliases = {
   '@': './src',
   '@components': './src/components',
-  '@i18n-next': 'src/i18n-next',
+  '@i18n-next': './src/i18n-next',
   '@redux-settings': './src/redux-settings',
   '@services': './src/services',
   '@utils': './src/utils',
@@ -13,12 +13,8 @@ export const aliases = {
 };
 
 export const viteAliases = Object.fromEntries(
-  Object.entries(aliases).map(([key, value]) => [
+  Object.entries(rsBuildAliases).map(([key, value]) => [
     key,
     path.resolve(__dirname, value),
   ]),
-);
-
-export const tsconfigPaths = Object.fromEntries(
-  Object.entries(aliases).map(([key, value]) => [`${key}/*`, [`${value}/*`]]),
 );

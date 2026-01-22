@@ -1,12 +1,12 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginSass } from '@rsbuild/plugin-sass';
-import { aliases } from './alias-config';
+import { rsBuildAliases } from './alias-config';
 
 // Docs: https://rsbuild.rs/config/
 export default defineConfig({
   plugins: [pluginReact(), pluginSass()],
-  resolve: { alias: aliases },
+  resolve: { alias: rsBuildAliases },
   html: {
     meta: {
       viewport:
