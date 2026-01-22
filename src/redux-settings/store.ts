@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
+
+import themeMiddleware from './middlewares/themeMiddleware';
+import appReducer from './slices/app-slice';
 import filterDropdownReducer from './slices/filter-dropdown-slice';
 import searchReducer from './slices/search-slice';
-import appReducer from './slices/app-slice';
-import themeMiddleware from './middlewares/themeMiddleware';
 
 export const store = configureStore({
   reducer: {
@@ -10,7 +11,7 @@ export const store = configureStore({
     search: searchReducer,
     app: appReducer,
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(themeMiddleware),
   devTools: process.env.NODE_ENV !== 'production',
 });

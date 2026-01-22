@@ -1,25 +1,26 @@
-import { useEffect, useMemo, useRef } from 'react';
 import './filter-dropdown.css';
-import { useQuery } from '@tanstack/react-query';
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
-import { useAppDispatch, useAppSelector } from '@custom-hooks/hooks';
-import {
-  toggleDropdown,
-  setSelectedRegion,
-} from '@redux-settings/slices/filter-dropdown-slice';
-import type { ICountry } from '@services/providers/types';
-import countryService from '@services/country.service';
+
 import { MemoIcon } from '@components/memo-icon/memo-icon';
-import { useTranslation } from 'react-i18next';
+import { useAppDispatch, useAppSelector } from '@custom-hooks/hooks';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
 import i18n from '@i18n-next/i18n';
+import {
+  setSelectedRegion,
+  toggleDropdown,
+} from '@redux-settings/slices/filter-dropdown-slice';
+import countryService from '@services/country.service';
+import type { ICountry } from '@services/providers/types';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useMemo, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function FilterDropdown() {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  const isOpen = useAppSelector(state => state.filterDropdown.isOpen);
+  const isOpen = useAppSelector((state) => state.filterDropdown.isOpen);
   const selectedRegion = useAppSelector(
-    state => state.filterDropdown.selectedRegion,
+    (state) => state.filterDropdown.selectedRegion,
   );
 
   const {
@@ -122,7 +123,7 @@ export default function FilterDropdown() {
             role="option"
             aria-selected={selectedRegion === null}
             onClick={() => handleSelect(null)}
-            onKeyDown={e => {
+            onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 handleSelect(null);
               }
@@ -130,7 +131,7 @@ export default function FilterDropdown() {
           >
             {t('i18n.filter.AllRegions')}
           </div>
-          {regions.map(region => (
+          {regions.map((region) => (
             <div
               key={region}
               tabIndex={0}
@@ -138,7 +139,7 @@ export default function FilterDropdown() {
               role="option"
               aria-selected={selectedRegion === region}
               onClick={() => handleSelect(region)}
-              onKeyDown={e => {
+              onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   handleSelect(region);
                 }

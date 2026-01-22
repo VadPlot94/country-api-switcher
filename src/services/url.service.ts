@@ -1,8 +1,9 @@
-import { z } from 'zod';
-import type { ICountry } from './providers/types';
-import logger from './logger.service';
 import i18n from '@i18n-next/i18n';
+import { z } from 'zod';
+
 import constants from './constants.service';
+import logger from './logger.service';
+import type { ICountry } from './providers/types';
 
 class UrlService {
   private baseCountryCodeSchema: z.ZodString = z
@@ -22,10 +23,10 @@ class UrlService {
       message: 'Language code must be 2 lowercase letters',
     })
     .optional()
-    .refine(val => !val || (i18n.options.supportedLngs || []).includes(val), {
+    .refine((val) => !val || (i18n.options.supportedLngs || []).includes(val), {
       message: 'Unsupported language code',
     })
-    .transform(val => val || constants.DefaultLanguage);
+    .transform((val) => val || constants.DefaultLanguage);
 
   public validateCountryCodeParam(
     countryCode: string,
@@ -36,7 +37,7 @@ class UrlService {
         ? z
             .string()
             .refine(
-              countryCode =>
+              (countryCode) =>
                 countriesList.some(({ cca3 }) => cca3 === countryCode),
               { message: 'Invalid ISO 3166-1 alpha-3 country code' },
             )

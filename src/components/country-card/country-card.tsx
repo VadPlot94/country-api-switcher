@@ -1,17 +1,18 @@
-import { memo } from 'react';
+import './country-card.css';
+
 import { useAppDispatch } from '@custom-hooks/hooks';
-import type { ICountry } from '@services/providers/types';
+import i18n from '@i18n-next/i18n';
 import { setSelectedRegion } from '@redux-settings/slices/filter-dropdown-slice';
 import {
   setInputValue,
   setSearchQuery,
 } from '@redux-settings/slices/search-slice';
-import './country-card.css';
-import { useTranslation } from 'react-i18next';
-import countryService from '@services/country.service';
-import i18n from '@i18n-next/i18n';
 import constants from '@services/constants.service';
+import countryService from '@services/country.service';
 import navigationService from '@services/navigation.service';
+import type { ICountry } from '@services/providers/types';
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export interface ICountryCardProps {
   country: ICountry;
@@ -48,7 +49,7 @@ export default memo(function CountryCard(props: ICountryCardProps) {
           '--country-card-height': `${constants.CountryCardElementHeight}px`,
         } as React.CSSProperties
       }
-      onKeyDown={e => onCountryCardKeyDown(e, country)}
+      onKeyDown={(e) => onCountryCardKeyDown(e, country)}
     >
       <img
         src={country.flags.svg}

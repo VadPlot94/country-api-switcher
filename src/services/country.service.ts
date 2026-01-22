@@ -1,6 +1,7 @@
-import type { ICountry } from './providers/types';
 import i18n from '@i18n-next/i18n';
+
 import constants from './constants.service';
+import type { ICountry } from './providers/types';
 
 class CountryService {
   public getCountriesBySelection(
@@ -9,7 +10,7 @@ class CountryService {
     searchQuery?: string,
   ): ICountry[] {
     return countries?.filter(
-      country =>
+      (country) =>
         (!selectedRegion || country.region === selectedRegion) &&
         (!searchQuery ||
           this.getCountryNameLabel(country)
@@ -35,7 +36,7 @@ class CountryService {
   public getCurrencies(currencies: ICountry['currencies']): string {
     return currencies
       ? Object.values(currencies)
-          .map(currency => currency.name)
+          .map((currency) => currency.name)
           .join(', ')
       : null;
   }
@@ -49,7 +50,7 @@ class CountryService {
     borderCodes: ICountry['borders'],
   ): ICountry[] {
     return (
-      borderCodes?.map?.(borderCode =>
+      borderCodes?.map?.((borderCode) =>
         countriesList?.find(({ cca3 }) => cca3 === borderCode),
       ) || []
     );

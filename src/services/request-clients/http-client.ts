@@ -1,5 +1,5 @@
-import type { CountryFields, ICountry } from '../providers/types';
 import constants from '../constants.service';
+import type { CountryFields, ICountry } from '../providers/types';
 import type { IRequestClient } from './types';
 
 class HttpClient implements IRequestClient {
@@ -9,7 +9,7 @@ class HttpClient implements IRequestClient {
 
   public callAllCountries(fields: CountryFields[]): Promise<ICountry[]> {
     return fetch(constants.CountriesAPIUrls.AllCountries + fields.join()).then(
-      resp => resp?.json() as Promise<ICountry[]>,
+      (resp) => resp?.json() as Promise<ICountry[]>,
     );
   }
 
@@ -20,8 +20,8 @@ class HttpClient implements IRequestClient {
         encodeURIComponent(countryCca3Code),
       ),
     )
-      .then(resp => resp?.json())
-      .then(data => data?.[0]);
+      .then((resp) => resp?.json())
+      .then((data) => data?.[0]);
   }
 }
 

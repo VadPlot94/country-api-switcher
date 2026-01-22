@@ -1,7 +1,8 @@
-import { useTranslation } from 'react-i18next';
-import NotificationBanner from '@components/notification-banner/notification-banner';
 import './not-found-page.scss';
+
+import NotificationBanner from '@components/notification-banner/notification-banner';
 import { GlobeEuropeAfricaIcon } from '@heroicons/react/24/solid';
+import { useTranslation } from 'react-i18next';
 
 export default function NotFoundPage() {
   const { t } = useTranslation();

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import helperService from '@services/helper.service';
 import { Theme } from '@services/constants.service';
+import helperService from '@services/helper.service';
 
 export interface IAppState {
   theme: Theme;

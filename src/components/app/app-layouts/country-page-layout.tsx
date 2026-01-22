@@ -1,11 +1,12 @@
-import CountryPage from '@components/country-page/country-page';
 import '../app.scss';
 import '@i18n-next/i18n';
-import { useLocation, useParams } from 'react-router-dom';
+
+import CountryPage from '@components/country-page/country-page';
+import NotFoundPage from '@components/not-found-page/not-found-page';
 import type { ICountry } from '@services/providers/types';
 import urlService from '@services/url.service';
-import NotFoundPage from '@components/not-found-page/not-found-page';
 import { useMemo } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 
 const CountryPageLayout = () => {
   const location = useLocation();

@@ -1,10 +1,10 @@
-import Header from '@components/header/header';
 import './app.scss';
-import '@i18n-next/i18n';
-import { useParams, useNavigate, useLocation, Outlet } from 'react-router-dom';
-import { useCallback, useEffect } from 'react';
+
+import Header from '@components/header/header';
 import navigationService from '@services/navigation.service';
 import urlService from '@services/url.service';
+import { useCallback, useEffect } from 'react';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const App = () => {
   const urlParams = useParams();

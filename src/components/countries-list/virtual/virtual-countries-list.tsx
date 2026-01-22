@@ -1,28 +1,29 @@
-import { useQuery } from '@tanstack/react-query';
-import CountryCard from '@components/country-card/country-card.tsx';
 import './virtual-countries-list.css';
-import { useAppSelector } from '@custom-hooks/hooks.ts';
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+
+import CountryCard from '@components/country-card/country-card.tsx';
 import Loader from '@components/loader/loader.tsx';
 import NotificationBanner from '@components/notification-banner/notification-banner.tsx';
+import { useAppSelector } from '@custom-hooks/hooks.ts';
 import {
   ExclamationCircleIcon,
   ExclamationTriangleIcon,
 } from '@heroicons/react/24/solid';
+import constants from '@services/constants.service.ts';
 import countryService from '@services/country.service.ts';
 import type { ICountry } from '@services/providers/types.ts';
-import { useTranslation } from 'react-i18next';
+import { useQuery } from '@tanstack/react-query';
 import { useWindowVirtualizer } from '@tanstack/react-virtual';
-import constants from '@services/constants.service.ts';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useMediaQuery } from 'usehooks-ts';
 
 export default function VirtualCountriesList() {
   const selectedRegion = useAppSelector(
-    state => state.filterDropdown.selectedRegion,
+    (state) => state.filterDropdown.selectedRegion,
   );
   const { t } = useTranslation();
 
-  const searchQuery = useAppSelector(state => state.search.searchQuery);
+  const searchQuery = useAppSelector((state) => state.search.searchQuery);
   const {
     data: countriesList,
     isPending,
@@ -142,14 +143,14 @@ export default function VirtualCountriesList() {
   return (
     <div
       className="virtual-countries-list"
-      ref={ref => {
+      ref={(ref) => {
         countryRowContainerRef.current = ref;
         if (ref) {
           setContainerWidth(countryRowContainerRef.current.clientWidth);
         }
       }}
     >
-      {virtualRows.map(virtualRow => {
+      {virtualRows.map((virtualRow) => {
         const startIndex = virtualRow.index * columnCount;
         const rowCountries = countriesListAfterSelection.slice(
           startIndex,
@@ -179,7 +180,7 @@ export default function VirtualCountriesList() {
                   }),
             }}
           >
-            {rowCountries.map(country => (
+            {rowCountries.map((country) => (
               <CountryCard
                 key={country.cca3}
                 country={country}

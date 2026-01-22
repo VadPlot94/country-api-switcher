@@ -1,17 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './components/app/app';
-import { Provider } from 'react-redux';
-import { store } from './redux-settings/store';
+import './index.scss';
+
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import queryClient from './tanstack-client/tanstack-client';
-import fileClient from './services/request-clients/file-client';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './index.scss';
+
+import App from './components/app/app';
 import CountryPageLayout from './components/app/app-layouts/country-page-layout';
 import MainPageLayout from './components/app/app-layouts/main-page-layout';
 import NotFoundPage from './components/not-found-page/not-found-page';
+import { store } from './redux-settings/store';
+import fileClient from './services/request-clients/file-client';
+import queryClient from './tanstack-client/tanstack-client';
 
 const rootEl = document.getElementById('root');
 if (rootEl) {

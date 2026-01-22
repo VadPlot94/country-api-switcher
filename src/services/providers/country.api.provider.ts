@@ -1,8 +1,8 @@
+import constants from '../constants.service';
+import logger from '../logger.service';
 import fileClient from '../request-clients/file-client';
 import httpClient from '../request-clients/http-client';
 import type { IRequestClient } from '../request-clients/types';
-import constants from '../constants.service';
-import logger from '../logger.service';
 import type { CountryFields, ICountry } from './types';
 
 class CountryApiProvider {
@@ -29,7 +29,7 @@ class CountryApiProvider {
 
     const countriesList: ICountry[] = await this.client
       .callAllCountries(fields)
-      .catch(err => {
+      .catch((err) => {
         logger.logError(err);
         return null;
       });
@@ -54,7 +54,7 @@ class CountryApiProvider {
   ): Promise<ICountry> {
     const country: ICountry = await this.client
       .callCountryByCca3Code(countryCca3Code)
-      .catch(err => {
+      .catch((err) => {
         logger.logError(err);
         return null;
       });

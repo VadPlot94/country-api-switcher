@@ -1,6 +1,7 @@
-import React, { memo } from 'react';
 import './notification-banner.css';
+
 import { MemoIcon } from '@components/memo-icon/memo-icon';
+import React, { memo } from 'react';
 
 export interface INotificationBannerProps {
   message: string;

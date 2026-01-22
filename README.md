@@ -58,13 +58,13 @@ npm run test:coverage
 - **Styling**: SCSS + BEM methodology (mixins), CSS Modules (experimental - try a bit/not implemented)
 - **Icons**: Heroicons (mini) [https://heroicons.com/mini]
 - **Internationalization**: i18next + react-i18next + browser language detector
-- **Schema Validation**: Zod (URL params & queries validation before usage)
-- **Testing**: Vitest + React Testing Library (unit tests in progress)
+- **Schema Validation**: Zod (URL params & queries validation before usage), DOMPurify (XSS protection for search query)
+- **Testing**: Vitest + React Testing Library (unit tests)
 - **Dev Tools**:
   - React Developer Tools + React profiler (for performance)
   - Redux DevTools(similar as Tanstack query devtools - but we invalidate here not API data but inner state of React application)
   - TanStack Query Devtools(invalidate/reload/trigger errors for getting API data)
-- **Other**: DOMPurify (XSS protection), Service Worker planned
+- **Other**: Eslint + Prettier (import sorting, aliases)
 
 ## ✨ Features (Functional requirements)
 
@@ -126,10 +126,10 @@ npm run test:coverage
 - Supported languages: English(`en`) & Russian(`ru`)
 - Deep linking support (shareable URLs, possibility to open pages through different understandable for user urls)
 - Internationalization (i18n)  
-  → i18next core  
-  → react-i18next integration  
-  → i18next-browser-languagedetector (auto-detection. Ex: through path param (`/ru`), query param(`?lang=ru`) and etc. See docs)  
-  → i18next-http-backend (lazy loading of translations)
+  → `i18next` core  
+  → `react-i18next` integration  
+  → `i18next-browser-languagedetector` (auto-detection. Ex: through path param (`/ru`), query param(`?lang=ru`) and etc. See docs)  
+  → `i18next-http-backend` (lazy loading of translations)
 
 ### 4. Security
 
@@ -137,7 +137,7 @@ npm run test:coverage
   → DOMPurify.sanitize() for displayed search results  
   → React automatically escapes values in `<input value={...}>`
 - URL parameter validation  
-  → Zod schema validation for `cca3` country codes before API calls
+  → `zod` package - schema validation for `cca3` country codes before API calls
 
 ### 5. Maintainability
 

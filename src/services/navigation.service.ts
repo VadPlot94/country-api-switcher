@@ -1,8 +1,8 @@
-import type { NavigateFunction } from 'react-router-dom';
-import type { ICountry } from './providers/types';
 import i18n from '@i18n-next/i18n';
+import type { Location, NavigateFunction } from 'react-router-dom';
+
 import constants from './constants.service';
-import type { Location } from 'react-router-dom';
+import type { ICountry } from './providers/types';
 
 class NavigationService {
   private navigate: NavigateFunction;

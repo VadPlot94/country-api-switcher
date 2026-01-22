@@ -1,21 +1,22 @@
-import { useQuery } from '@tanstack/react-query';
 import './country-page.css';
+
+import InfoRow from '@components/info-row/info-row';
+import Loader from '@components/loader/loader';
+import { MemoIcon } from '@components/memo-icon/memo-icon';
+import NotFoundPage from '@components/not-found-page/not-found-page';
+import NotificationBanner from '@components/notification-banner/notification-banner';
 import { ArrowLongLeftIcon } from '@heroicons/react/24/solid';
+import i18n from '@i18n-next/i18n';
+import countryService from '@services/country.service';
+import navigationService from '@services/navigation.service';
 import countryApiProvider, {
   countryFileProvider,
 } from '@services/providers/country.api.provider';
-import Loader from '@components/loader/loader';
-import InfoRow from '@components/info-row/info-row';
 import type { ICountry } from '@services/providers/types';
-import countryService from '@services/country.service';
-import { MemoIcon } from '@components/memo-icon/memo-icon';
-import { useTranslation } from 'react-i18next';
-import i18n from '@i18n-next/i18n';
-import navigationService from '@services/navigation.service';
-import NotFoundPage from '@components/not-found-page/not-found-page';
-import NotificationBanner from '@components/notification-banner/notification-banner';
 import urlService from '@services/url.service';
+import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export interface ICountryPageProps {
   countryData: ICountry;
@@ -92,7 +93,7 @@ export default function CountryPage(props: ICountryPageProps) {
 
   const filteredBorders = countryService
     .getBorderCountries(countriesList, country.borders)
-    .filter(country => !!country);
+    .filter((country) => !!country);
 
   return (
     <div className="country-page">
@@ -170,7 +171,7 @@ export default function CountryPage(props: ICountryPageProps) {
             <div className="country-page__border-countries-buttons-container">
               {!isSelectedCountryFetching ? (
                 filteredBorders?.length ? (
-                  filteredBorders.map(country => {
+                  filteredBorders.map((country) => {
                     return (
                       <button
                         key={countryService.getCountryName(country)}

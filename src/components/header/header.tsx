@@ -1,17 +1,18 @@
-import { useAppDispatch, useAppSelector } from '@custom-hooks/hooks';
-import { Theme } from '@services/constants.service';
-import { toggleAppTheme } from '@redux-settings/slices/app-slice';
 import './header.css';
-import { MoonIcon } from '@heroicons/react/24/solid';
-import { SunIcon } from '@heroicons/react/24/outline';
+
 import { MemoIcon } from '@components/memo-icon/memo-icon';
-import { useTranslation } from 'react-i18next';
+import { useAppDispatch, useAppSelector } from '@custom-hooks/hooks';
+import { SunIcon } from '@heroicons/react/24/outline';
+import { MoonIcon } from '@heroicons/react/24/solid';
+import { toggleAppTheme } from '@redux-settings/slices/app-slice';
+import { Theme } from '@services/constants.service';
 import helperService from '@services/helper.service';
+import { useTranslation } from 'react-i18next';
 
 export default function Header() {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const theme = useAppSelector(state => state.app.theme);
+  const theme = useAppSelector((state) => state.app.theme);
   helperService.updateHtmlTheme(theme);
 
   const handleToggleAppTheme = () => {

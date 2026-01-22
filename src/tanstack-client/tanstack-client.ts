@@ -1,10 +1,10 @@
-import { QueryClient } from '@tanstack/query-core';
+import i18n from '@i18n-next/i18n';
+import constants from '@services/constants.service';
 import countryApiProvider, {
   countryFileProvider,
 } from '@services/providers/country.api.provider';
 import type { CountryFields } from '@services/providers/types';
-import i18n from '@i18n-next/i18n';
-import constants from '@services/constants.service';
+import { QueryClient } from '@tanstack/query-core';
 
 // For TanStack Query devtools
 declare global {

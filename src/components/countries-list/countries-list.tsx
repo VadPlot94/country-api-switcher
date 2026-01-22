@@ -1,25 +1,26 @@
-import { useQuery } from '@tanstack/react-query';
-import CountryCard from '@components/country-card/country-card.tsx';
 import './countries-list.css';
-import { useAppSelector } from '@custom-hooks/hooks.ts';
-import { useMemo } from 'react';
+
+import CountryCard from '@components/country-card/country-card.tsx';
 import Loader from '@components/loader/loader.tsx';
 import NotificationBanner from '@components/notification-banner/notification-banner.tsx';
+import { useAppSelector } from '@custom-hooks/hooks.ts';
 import {
   ExclamationCircleIcon,
   ExclamationTriangleIcon,
 } from '@heroicons/react/24/solid';
 import countryService from '@services/country.service.ts';
 import type { ICountry } from '@services/providers/types.ts';
+import { useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export default function CountriesList() {
   const selectedRegion = useAppSelector(
-    state => state.filterDropdown.selectedRegion,
+    (state) => state.filterDropdown.selectedRegion,
   );
   const { t } = useTranslation();
 
-  const searchQuery = useAppSelector(state => state.search.searchQuery);
+  const searchQuery = useAppSelector((state) => state.search.searchQuery);
   const {
     data: countriesList,
     isPending,
@@ -72,7 +73,7 @@ export default function CountriesList() {
 
   return (
     <div className="countries-list">
-      {countriesListAfterSelection.map(country => {
+      {countriesListAfterSelection.map((country) => {
         return (
           <CountryCard
             key={countryService.getCountryName(country)}

@@ -1,5 +1,6 @@
-import { memo } from 'react';
 import './loader.css';
+
+import { memo } from 'react';
 
 export interface ILoaderProps {
   size?: number;

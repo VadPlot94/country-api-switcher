@@ -1,7 +1,7 @@
-import type { CountryFields, ICountry } from '../providers/types';
+import queryClient from '../../tanstack-client/tanstack-client';
 import constants from '../constants.service';
 import logger from '../logger.service';
-import queryClient from '../../tanstack-client/tanstack-client';
+import type { CountryFields, ICountry } from '../providers/types';
 import type { IRequestClient } from './types';
 
 class FileClient implements IRequestClient {
@@ -13,8 +13,8 @@ class FileClient implements IRequestClient {
     const countries =
       queryClient.getQueryData<ICountry[]>(['countryFileList']) ?? [];
 
-    const countriesList = countries.map(country =>
-      Object.fromEntries(fields.map(field => [field, country[field]])),
+    const countriesList = countries.map((country) =>
+      Object.fromEntries(fields.map((field) => [field, country[field]])),
     );
 
     return Promise.resolve(countriesList as unknown as ICountry[]);
@@ -23,7 +23,7 @@ class FileClient implements IRequestClient {
     return Promise.resolve(
       queryClient
         .getQueryData<ICountry[]>(['countryFileList'])
-        ?.find(country => country.cca3 === countryCca3Code),
+        ?.find((country) => country.cca3 === countryCca3Code),
     );
   }
 

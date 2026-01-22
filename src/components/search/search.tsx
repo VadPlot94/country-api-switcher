@@ -1,21 +1,22 @@
-import DOMPurify from 'dompurify';
+import './search.css';
+
+import { MemoIcon } from '@components/memo-icon/memo-icon';
 import { useAppDispatch, useAppSelector } from '@custom-hooks/hooks';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import {
   setInputValue,
   setSearchQuery,
 } from '@redux-settings/slices/search-slice';
-import './search.css';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { useDebouncedCallback } from 'use-debounce';
-import { useQuery } from '@tanstack/react-query';
 import type { ICountry } from '@services/providers/types';
-import { MemoIcon } from '@components/memo-icon/memo-icon';
-import { useTranslation } from 'react-i18next';
+import { useQuery } from '@tanstack/react-query';
+import DOMPurify from 'dompurify';
 import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDebouncedCallback } from 'use-debounce';
 
 export default function Search() {
   const dispatch = useAppDispatch();
-  const searchInputValue = useAppSelector(state => state.search.inputValue);
+  const searchInputValue = useAppSelector((state) => state.search.inputValue);
   const { t } = useTranslation();
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -96,7 +97,7 @@ export default function Search() {
         aria-disabled={isPending || isError}
         aria-label={t('i18n.search.SearchForCountryPlaceholder')}
         value={searchInputValue}
-        onChange={e => handleInputChange(e.target.value)}
+        onChange={(e) => handleInputChange(e.target.value)}
         tabIndex={0}
       ></input>
     </div>

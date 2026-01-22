@@ -1,7 +1,8 @@
-import { memo } from 'react';
-import Loader from '@components/loader/loader';
 import './info-row.css';
+
+import Loader from '@components/loader/loader';
 import { useEllipsisTitle } from '@custom-hooks/useEllipsisTitle';
+import { memo } from 'react';
 
 export interface IInfoRowProps {
   title: string;

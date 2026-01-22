@@ -10,7 +10,7 @@ class HelperService {
   }
   public updateHtmlTheme(newTheme: Theme) {
     const htmlClassList = document.documentElement.classList;
-    Object.values(Theme).forEach(theme => htmlClassList.remove(theme));
+    Object.values(Theme).forEach((theme) => htmlClassList.remove(theme));
     document.documentElement.classList.add(newTheme);
   }
 }

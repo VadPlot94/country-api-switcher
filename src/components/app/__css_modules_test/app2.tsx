@@ -1,16 +1,18 @@
-import { useAppSelector } from '@custom-hooks/hooks';
-import helperService from '@services/helper.service';
+import '@i18n-next/i18n';
+
 import CountriesLayout from '@components/countries-list/countries-list';
 import CountryPage from '@components/country-page/country-page';
 import FilterDropdown from '@components/filter/filter-dropdown';
 import Header from '@components/header/header';
 import Search from '@components/search/search';
-import appCssStyles from './__css_modules_test/app.module.css';
-import '@i18n-next/i18n';
+import { useAppSelector } from '@custom-hooks/hooks';
+import helperService from '@services/helper.service';
+
+import appCssStyles from './app.module.css';
 
 const App = () => {
-  const theme = useAppSelector(state => state.app.theme);
-  const selectedCountry = useAppSelector(state => state.app.selectedCountry);
+  const theme = useAppSelector((state) => state.app.theme);
+  const selectedCountry = useAppSelector((state) => state.app.selectedCountry);
   helperService.updateHtmlTheme(theme);
 
   return (
