@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import NotificationBanner from '../notification-banner/notification-banner';
+import NotificationBanner from '@components/notification-banner/notification-banner';
 import './not-found-page.scss';
 import { GlobeEuropeAfricaIcon } from '@heroicons/react/24/solid';
 

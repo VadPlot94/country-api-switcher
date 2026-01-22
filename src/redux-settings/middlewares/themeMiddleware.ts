@@ -1,7 +1,7 @@
 import type { Middleware } from '@reduxjs/toolkit';
 import { toggleAppTheme } from '../slices/app-slice';
-import type { Theme } from '../services/constants.service';
-import helperService from '../services/helper.service';
+import type { Theme } from '@services/constants.service';
+import helperService from '@services/helper.service';
 import type { RootState } from '../store';
 
 const themeMiddleware: Middleware = store => next => action => {

@@ -1,142 +1,189 @@
-# Rsbuild project
+# REST Countries API with Color Theme Switcher
 
-## Setup
+[![Rsbuild](https://img.shields.io/badge/built%20with-Rsbuild-%2300d8ff?style=flat-square&logo=webpack)](https://rsbuild.dev/)
+[![React](https://img.shields.io/badge/React-18+-61DAFB?style=flat-square&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Vitest](https://img.shields.io/badge/tested%20with-Vitest-6E9EF0?style=flat-square&logo=vite)](https://vitest.dev/)
 
-Install the dependencies:
+Modern, responsive single-page application built for the Frontend Mentor challenge.
 
-```bash
-npm install
-```
-
-## Get started
-
-Start the dev server, and the app will be available at [http://localhost:3000](http://localhost:3000).
-http://localhost:3000/ru http://localhost:3000/?lng=ru
-http://localhost:3000/?virtualTable=true
+## 📦 Installation & Usage
 
 ```bash
+# Clone the repository
+git clone https://gitlab.com/frontendmentor4274851/country-api-switcher.git
+cd country-api-switcher
+
+# ────────────────────────────────────────────────
+# Development & other commands
+# ────────────────────────────────────────────────
+
+# Start development server
 npm run dev
-```
+# → http://localhost:3000 (or custom port)
 
-Build the app for production:
-
-```bash
+# Build for production
 npm run build
-```
 
-Preview the production build locally:
-
-```bash
+# Preview production build locally
 npm run preview
+
+# Run tests (Vitest)
+npm run test
+
+# Run tests in watch mode + nice UI dashboard
+npm run test:ui
+
+# Generate coverage report
+npm run test:coverage
+
 ```
 
-## Learn more
+## 🔗 Links
 
-To learn more about Rsbuild, check out the following resources:
+- Challenge: [REST Countries API with color theme switcher](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
+- API: [REST Countries API](https://restcountries.com)
+  - Offline mode: local JSON file with all countries (`public/assets/countries.v3.1.json`)
+- Repository: https://gitlab.com/frontendmentor4274851/country-api-switcher
+- Figma/Style Guide — `No Figma!` Create UI by style-guide.md in starter files and png screenshots
 
-- [Rsbuild documentation](https://rsbuild.rs) - explore Rsbuild features and APIs.
-- [Rsbuild GitHub repository](https://github.com/web-infra-dev/rsbuild) - your feedback and contributions are welcome!
+## 🚀 Tech Stack (used technologies)
 
-## Task
+- **Build Tool**: Rsbuild (Rspack-based, extremely fast)
+- **Frontend**: React 18+, TypeScript
+- **Routing**: React Router v6
+- **Data Fetching & Cache**: TanStack Query (React Query) (manage/request API data instead fetch)
+- **Virtualization**: TanStack Virtual (for virtual country list scrolling)
+- **State Management**: Redux Toolkit + RTK Query (optional / internal UI state management)
+- **Styling**: SCSS + BEM methodology (mixins), CSS Modules (experimental - try a bit/not implemented)
+- **Icons**: Heroicons (mini) [https://heroicons.com/mini]
+- **Internationalization**: i18next + react-i18next + browser language detector
+- **Schema Validation**: Zod (URL params & queries validation before usage)
+- **Testing**: Vitest + React Testing Library (unit tests in progress)
+- **Dev Tools**:
+  - React Developer Tools + React profiler (for performance)
+  - Redux DevTools(similar as Tanstack query devtools - but we invalidate here not API data but inner state of React application)
+  - TanStack Query Devtools(invalidate/reload/trigger errors for getting API data)
+- **Other**: DOMPurify (XSS protection), Service Worker planned
 
-https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca
-https://gitlab.com/frontendmentor4274851/country-api-switcher/pages#overview
+## ✨ Features (Functional requirements)
 
-## API
-
-- https://restcountries.com
-- Local JSON file with all countries
-
-## Used technologies
-
-- RsBuild (https://rsbuild.rs)
-- Tanstack (manage/request API data instead fetch)
-- Tanstack virtual (for virtual country list scrolling)
-- Tanstack query devtools (invalidate/reload/trigger errors for getting API data)
-- Redux toolkit (state management inside React)
-- Redux dev tools (similar as Tanstack query devtools - but we invalidate here not API data but inner state of React application)
-- React developer tools + React profiler (for performance)
-- SCSS (start impl + BEM mixins)
-- CSS Modules (try a bit/not implemented)
-- Heroicons (https://heroicons.com/mini)
-- BEM methodology for CSS
-- React Router
-- Zod - package for url params and query validation before usage
-
-## Functional
-
-- Change theme (dark, light)
-- Search by country name
-- Filter by region
-- Open Country description
-- Navigate to country description through country borders buttons
-- Supported languages: en, ru
-- Offline work
-- Keyboard navigation (tab-index - using Tab button to interact with page)
-- Open pages with different urls:
-  - Main page (http://localhost:3000/ or http://localhost:3000/ru)
-  - Country description page (http://localhost:3000/country/ITA or http://localhost:3000/ru/country/ITA)
-  - Not found page (any other invalid url)
-
-## Done
-
-- Adding some animation and transition
-- React.memo, useCallback/useMemo hooks for optimization
-- Try redux middlewares
-- Offline mode
-- Security:
-  - search query - DOMPurify.sanitize - text search by countries
-  - searchInputValue placed back to <input value={searchInputValue}> - escaped by React automatically
-  - cca3 code from url - Zod package validation - send param to API
-- Try Inversify DI container:
-  - Perfomance:
-    - as soon as rsbuild have to process decorators (@inject, injectable)
-    - performance down
-    - Better do not use Inversify or do not use decorators at all
-  - Circular deps:
-    - has conflicts with slicers and middleware of Redux
-    - not allow to get dependencies from container in them
-  - Solution: removed
-- Internationalization (i18n)
-  - i18next — core
-  - react-i18next — integration with React
-  - i18next-browser-languagedetector — auto lang detector by several conditions (see docs. Useful if add query like https://site.com?lng=ru)
-  - i18next-http-backend — lazy load different translation files
-  - Example: http://localhost:3000/ru http://localhost:3000/?lng=ru (default: en)
-- CSS Modules (one of the realization CSS-IN-JS modules)
-  - (Just try on one file - not implemented)
-  - usage css classes in JS like object
-  - naming of the files: \*.module.css|scss
-  - use camelcase for classes like: '.containerContent' instead '.container-content' or appCssStyles['app__container-content']
-  - Need to generate types for TS typification
-    - https://github.com/Quramy/typed-css-modules
-    - npm run types:css("types:css": "tcm -p \"src/\*_/_.module.{css,scss}\" --camelcase") - need run this command every time when css changed
-      -Not implemented problems:
-    - a) .app .header {} - such selector not working. After generation in html we get hashing classes: .app-tysRT .header {} - styles will never find
-      - solution: separate global styles in global.css and use modules only for local files.
-    - b) typed-css-modules - generate app.css.d.ts only near app.css file. Can not find way to get typization from separate folder
-- SCSS + BEM
-  - try on two top files only
-- Accessibility (partially)
-- Virtual scrolling
-  - Implement virtual country list using tanstack-virtual package -> useWindowVirtualizer
-  - Can be opened with ?virtualTable=true => http://localhost:3000/?virtualTable=true
-- Routing
-  - implement react-router-dom package
-  - http://localhost:3000/ru -> http://localhost:3000/ru (rus)
-  - http://localhost:3000/en -> http://localhost:3000 (eng)
-  - http://localhost:3000/blabla -> http://localhost:3000 (eng)
-  - http://localhost:3000/blabla/bla -> Not found page
-  - http://localhost:3000/country/ITA -> http://localhost:3000/country/ITA (open Italy description) (eng)
-  - http://localhost:3000/ru/country/ITA -> http://localhost:3000/ru/country/ITA (rus)
-  - http://localhost:3000/en/country/ITA -> http://localhost:3000/country/ITA (eng)
-  - http://localhost:3000/fr/country/ITA -> http://localhost:3000/country/ITA (eng)
-
-  - Realization routes: main page, country page, not found page
+- 🌗 Dark / Light theme toggle (persisted)
+- 🔍 Search by country name
+- 🌍 Filter by region
+- 📄 Detailed country page (click on flag or via url)
+- 🔗 Navigation to appropriate country description via bordering countries buttons (Detailed country page)
+- 🌐 Multi-language support: English & Russian
+- ⚡ High performance: virtualized list (TanStack Virtual), React.memo + hooks
+- 📴 Offline mode (local JSON + future Service Worker)
+- ♿ Accessibility: keyboard navigation(tab-index - using Tab button to interact with page), semantic HTML
+- 🛣️ Deep linking & smart language redirection
+- 🛡️ Input sanitization & URL params validation (Zod)
+- 🌐 Routing & Language Behavior(open pages with different urls):
+  - Realized routes: main page(`/:lang?`), country description page(`:lang?/country/:cca3`), not found page(`*` - any invalid url)
   - Transferring selected country through navigation state
   - Redirection to supported languages
+  - Examples (`ITA` is cca3 code for appropriate country):
 
-## TODO
+    | URL example          | Result                                                       | Language |
+    | :------------------- | ------------------------------------------------------------ | -------: |
+    | `/`                  | Main page                                                    |       EN |
+    | `/ru`                | Main page                                                    |       RU |
+    | `/country/ITA`       | Country description page (Italy)                             |       EN |
+    | `/ru/country/ITA`    | Country description page (Italy)                             |       RU |
+    | `/en/country/ITA`    | Country description page (Italy) (redirect → `/country/ITA`) |       EN |
+    | `/fr/country/ITA`    | Country description page (Italy) (redirect → `/country/ITA`) |       EN |
+    | `/blabla`            | Redirect to `/` (EN)                                         |       EN |
+    | any invalid url path | Not Found page                                               |        — |
 
-- unit tests (RTK)
-- service worker (- OfflineFlags) - preload flags for offline work
+## 🔧 Non-functional highlights
+
+### 1. Performance
+
+- Virtual scrolling for country list  
+  → Implemented with TanStack Virtual (`useWindowVirtualizer`)  
+  → Can be forced via query param: `?virtualTable=true`  
+  → Example: http://localhost:3000/?virtualTable=true
+- Memoization & optimization hooks  
+  → `React.memo`, `useMemo`, `useCallback` used where appropriate
+- Performance profiling  
+  → React Developer Tools extension (Components, Profiler tabs in Chrome dev tools)
+- Lazy-loaded translations (i18next-http-backend)
+
+### 2. Reliability
+
+- Custom Not Found page for invalid routes
+- Offline mode support  
+  → Local JSON fallback (`public/assets/countries.v3.1.json`)  
+  → Planned: Service Worker + preloading of flag images
+
+### 3. Usability
+
+- Smooth animations & transitions (partially implemented)
+- Partial Accessibility improvements  
+  → Keyboard navigation (Tab keyboard button navigation focus support)  
+  → Semantic HTML structure
+- Supported languages: English(`en`) & Russian(`ru`)
+- Deep linking support (shareable URLs, possibility to open pages through different understandable for user urls)
+- Internationalization (i18n)  
+  → i18next core  
+  → react-i18next integration  
+  → i18next-browser-languagedetector (auto-detection. Ex: through path param (`/ru`), query param(`?lang=ru`) and etc. See docs)  
+  → i18next-http-backend (lazy loading of translations)
+
+### 4. Security
+
+- Search input sanitization
+  → DOMPurify.sanitize() for displayed search results  
+  → React automatically escapes values in `<input value={...}>`
+- URL parameter validation  
+  → Zod schema validation for `cca3` country codes before API calls
+
+### 5. Maintainability
+
+- Redux middlewares explored
+- InversifyJS DI container experiment → **removed**  
+  → Reasons:
+  - Rsbuild performance drop due to decorator(@inject, injectable) processing - better do not use Inversify or do not use decorators at all
+  - Circular dependency issues with Redux slices & middleware (not allow to inject dependencies from container in it)
+- CSS Modules experiment (tried on one component) → **removed(attempts saved in \_\_css_modules_test folder)**
+  → Purpose of modules usage: css classes can be used like object in JSX/TSX files with typization and tips
+  - use camelcase for classes like: '.containerContent' instead '.container-content' or appCssStyles['app__container-content']
+  - Example: `<div className={appCssStyles.containerContent} />` - we know exactly that containerContent class exist in css and not removed
+    → Issues with nested selectors & type generation:
+  - Need to generate types for TS typification
+  - https://github.com/Quramy/typed-css-modules
+  - npm run types:css("types:css": "tcm -p \"src/\*_/_.module.{css,scss}\" --camelcase") - need run this command every time when css changed
+    - !!!**Not implemented** - **problems**!!!:
+      - a) .app .header {} - such selector not working. After generation in html we get hashing classes: .app-tysRT .header {} - styles will never find
+        - Solution: keep global styles in `global.css`, use modules only locally. However can not find way to fix this problem event with this approach
+      - b) typed-css-modules - generated app.css.d.ts can be placed only near app.css file. Can not find way to move d.ts file in any random folder
+- SCSS + BEM methodology applied to main layout files (one or two files only)
+
+### 6. Portability
+
+- Fully responsive design
+  → Mobile, tablet, desktop layouts
+
+### 7. Operational Requirements
+
+- Basic logging (console + potential structured logging in future)
+
+### 8. Testability
+
+- Vitest as modern, fast alternative to Jest for unit tests
+
+## 🛠️ TODO / Planned
+
+- Full unit & integration tests (Redux Toolkit slices + components)
+- Service Worker + Offline-first flags preloading
+- CI integration (tests + deployment preview)
+- Improve accessibility (ARIA labels, screen reader testing)
+- Add more animations / transitions
+- Explore TanStack Router as alternative (type-safe routing)
+
+## 📝 Notes
+
+- This project experiments with modern tools (Rsbuild + TanStack stack + RTK) to achieve great DX and performance. Some approaches (Inversify DI, full CSS Modules) were tested and removed due to complexity / performance trade-offs.
+- Feedback and contributions are welcome! 🚀
+- Made with ❤️ by Vadzim

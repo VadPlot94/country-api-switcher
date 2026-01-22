@@ -2,16 +2,16 @@ import { useEffect, useMemo, useRef } from 'react';
 import './filter-dropdown.css';
 import { useQuery } from '@tanstack/react-query';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '@custom-hooks/hooks';
 import {
   toggleDropdown,
   setSelectedRegion,
-} from '../../slices/filter-dropdown-slice';
-import type { ICountry } from '../../providers/types';
-import countryService from '../../services/country.service';
-import { MemoIcon } from '../memo-icon/memo-icon';
+} from '@redux-settings/slices/filter-dropdown-slice';
+import type { ICountry } from '@services/providers/types';
+import countryService from '@services/country.service';
+import { MemoIcon } from '@components/memo-icon/memo-icon';
 import { useTranslation } from 'react-i18next';
-import i18n from '../../i18n/i18n-setup';
+import i18n from '@i18n-next/i18n';
 
 export default function FilterDropdown() {
   const dispatch = useAppDispatch();

@@ -1,14 +1,17 @@
 import { memo } from 'react';
-import { useAppDispatch } from '../../hooks';
-import type { ICountry } from '../../providers/types';
-import { setSelectedRegion } from '../../slices/filter-dropdown-slice';
-import { setInputValue, setSearchQuery } from '../../slices/search-slice';
+import { useAppDispatch } from '@custom-hooks/hooks';
+import type { ICountry } from '@services/providers/types';
+import { setSelectedRegion } from '@redux-settings/slices/filter-dropdown-slice';
+import {
+  setInputValue,
+  setSearchQuery,
+} from '@redux-settings/slices/search-slice';
 import './country-card.css';
 import { useTranslation } from 'react-i18next';
-import countryService from '../../services/country.service';
-import i18n from '../../i18n/i18n-setup';
-import constants from '../../services/constants.service';
-import navigationService from '../../services/navigation.service';
+import countryService from '@services/country.service';
+import i18n from '@i18n-next/i18n';
+import constants from '@services/constants.service';
+import navigationService from '@services/navigation.service';
 
 export interface ICountryCardProps {
   country: ICountry;

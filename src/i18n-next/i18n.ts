@@ -2,8 +2,8 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
-import constants from '../services/constants.service';
-import logger from '../services/logger.service';
+import constants from '@services/constants.service';
+import logger from '@services/logger.service';
 
 i18n
   .use(Backend)

@@ -1,10 +1,10 @@
-import Header from '../header/header';
+import Header from '@components/header/header';
 import './app.scss';
-import '../../i18n/i18n-setup';
+import '@i18n-next/i18n';
 import { useParams, useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useCallback, useEffect } from 'react';
-import navigationService from '../../services/navigation.service';
-import urlService from '../../services/url.service';
+import navigationService from '@services/navigation.service';
+import urlService from '@services/url.service';
 
 const App = () => {
   const urlParams = useParams();
@@ -20,13 +20,11 @@ const App = () => {
       urlParams.lang,
     );
 
-    const newPath = !isLangSupported
-      ? '/' +
-        location.pathname.split('/').slice(2).filter(Boolean).join('/') +
-        location.search
-      : null;
+    const newPath = isLangSupported
+      ? null
+      : navigationService.removeFirstSegmentFromPath(location);
     return newPath;
-  }, [urlParams.lang, location.pathname, location.search]);
+  }, [urlParams.lang, location]);
 
   useEffect(() => {
     const newPath = validateAndCreateNewPathWithLang();

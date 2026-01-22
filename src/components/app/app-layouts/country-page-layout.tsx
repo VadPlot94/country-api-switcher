@@ -1,10 +1,10 @@
-import CountryPage from '../../country-page/country-page';
+import CountryPage from '@components/country-page/country-page';
 import '../app.scss';
-import '../../../i18n/i18n-setup';
+import '@i18n-next/i18n';
 import { useLocation, useParams } from 'react-router-dom';
-import type { ICountry } from '../../../providers/types';
-import urlService from '../../../services/url.service';
-import NotFoundPage from '../../not-found-page/not-found-page';
+import type { ICountry } from '@services/providers/types';
+import urlService from '@services/url.service';
+import NotFoundPage from '@components/not-found-page/not-found-page';
 import { useMemo } from 'react';
 
 const CountryPageLayout = () => {

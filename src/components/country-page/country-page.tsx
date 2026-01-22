@@ -3,18 +3,18 @@ import './country-page.css';
 import { ArrowLongLeftIcon } from '@heroicons/react/24/solid';
 import countryApiProvider, {
   countryFileProvider,
-} from '../../providers/country.api.provider';
-import Loader from '../loader/loader';
-import InfoRow from '../info-row/info-row';
-import type { ICountry } from '../../providers/types';
-import countryService from '../../services/country.service';
-import { MemoIcon } from '../memo-icon/memo-icon';
+} from '@services/providers/country.api.provider';
+import Loader from '@components/loader/loader';
+import InfoRow from '@components/info-row/info-row';
+import type { ICountry } from '@services/providers/types';
+import countryService from '@services/country.service';
+import { MemoIcon } from '@components/memo-icon/memo-icon';
 import { useTranslation } from 'react-i18next';
-import i18n from '../../i18n/i18n-setup';
-import navigationService from '../../services/navigation.service';
-import NotFoundPage from '../not-found-page/not-found-page';
-import NotificationBanner from '../notification-banner/notification-banner';
-import urlService from '../../services/url.service';
+import i18n from '@i18n-next/i18n';
+import navigationService from '@services/navigation.service';
+import NotFoundPage from '@components/not-found-page/not-found-page';
+import NotificationBanner from '@components/notification-banner/notification-banner';
+import urlService from '@services/url.service';
 import { useMemo } from 'react';
 
 export interface ICountryPageProps {

@@ -1,5 +1,5 @@
-import type { ICountry } from '../providers/types';
-import i18n from '../i18n/i18n-setup';
+import type { ICountry } from './providers/types';
+import i18n from '@i18n-next/i18n';
 import constants from './constants.service';
 
 class CountryService {

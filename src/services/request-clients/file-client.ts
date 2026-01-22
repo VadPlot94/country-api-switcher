@@ -1,7 +1,7 @@
 import type { CountryFields, ICountry } from '../providers/types';
-import constants from '../services/constants.service';
-import logger from '../services/logger.service';
-import queryClient from '../tanstack-query-client/tanstack-client';
+import constants from '../constants.service';
+import logger from '../logger.service';
+import queryClient from '../../tanstack-client/tanstack-client';
 import type { IRequestClient } from './types';
 
 class FileClient implements IRequestClient {

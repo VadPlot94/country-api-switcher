@@ -1,12 +1,12 @@
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { Theme } from '../../services/constants.service';
-import { toggleAppTheme } from '../../slices/app-slice';
+import { useAppDispatch, useAppSelector } from '@custom-hooks/hooks';
+import { Theme } from '@services/constants.service';
+import { toggleAppTheme } from '@redux-settings/slices/app-slice';
 import './header.css';
 import { MoonIcon } from '@heroicons/react/24/solid';
 import { SunIcon } from '@heroicons/react/24/outline';
-import { MemoIcon } from '../memo-icon/memo-icon';
+import { MemoIcon } from '@components/memo-icon/memo-icon';
 import { useTranslation } from 'react-i18next';
-import helperService from '../../services/helper.service';
+import helperService from '@services/helper.service';
 
 export default function Header() {
   const dispatch = useAppDispatch();
@@ -18,34 +18,32 @@ export default function Header() {
     dispatch(toggleAppTheme());
   };
 
+  const isDarkMode = theme === Theme.DarkMode;
+
   return (
-    <div className="header">
+    <div
+      className="header"
+      role="banner"
+    >
       <div className="header__container">
         <span className="header__title">{t('i18n.header.WhereInWorld')}</span>
+        {/* Accessibility: aria-pressed - will read like: clicked=true or un-clicked=false together with aria-label */}
         <button
           type="button"
           className="header__theme-button"
-          aria-label="Theme Mode Change"
+          aria-label={`Theme Mode Change to ${t(isDarkMode ? 'i18n.header.LightMode' : 'i18n.header.DarkMode')}`}
+          aria-pressed={isDarkMode}
           onClick={handleToggleAppTheme}
           tabIndex={0}
         >
-          {theme === Theme.DarkMode ? (
-            <>
-              <MemoIcon
-                component={MoonIcon}
-                className="header__theme-icon"
-              />
-              <span>{t('i18n.header.DarkMode')}</span>
-            </>
-          ) : (
-            <>
-              <MemoIcon
-                component={SunIcon}
-                className="header__theme-icon"
-              />
-              <span>{t('i18n.header.LightMode')}</span>
-            </>
-          )}
+          <MemoIcon
+            component={isDarkMode ? MoonIcon : SunIcon}
+            className="header__theme-icon"
+          />
+          {/* Accessibility: aria-hidden="true" hide text from screen reader - aria-label above will be used */}
+          <span aria-hidden="true">
+            {t(isDarkMode ? 'i18n.header.DarkMode' : 'i18n.header.LightMode')}
+          </span>
         </button>
       </div>
     </div>

@@ -4,6 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import { aliases } from './alias-config';
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -18,6 +19,20 @@ export default defineConfig([
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+    },
+    settings: {
+      'import/resolver': {
+        alias: {
+          map: Object.entries(aliases),
+          extensions: ['.ts', '.tsx'],
+        },
+      },
+    },
+    rules: {
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
     },
   },
 ]);

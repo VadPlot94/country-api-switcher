@@ -1,19 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import CountryCard from '../../country-card/country-card.tsx';
+import CountryCard from '@components/country-card/country-card.tsx';
 import './virtual-countries-list.css';
-import { useAppSelector } from '../../../hooks.ts';
+import { useAppSelector } from '@custom-hooks/hooks.ts';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import Loader from '../../loader/loader.tsx';
-import NotificationBanner from '../../notification-banner/notification-banner.tsx';
+import Loader from '@components/loader/loader.tsx';
+import NotificationBanner from '@components/notification-banner/notification-banner.tsx';
 import {
   ExclamationCircleIcon,
   ExclamationTriangleIcon,
 } from '@heroicons/react/24/solid';
-import countryService from '../../../services/country.service.ts';
-import type { ICountry } from '../../../providers/types.ts';
+import countryService from '@services/country.service.ts';
+import type { ICountry } from '@services/providers/types.ts';
 import { useTranslation } from 'react-i18next';
 import { useWindowVirtualizer } from '@tanstack/react-virtual';
-import constants from '../../../services/constants.service.ts';
+import constants from '@services/constants.service.ts';
 import { useMediaQuery } from 'usehooks-ts';
 
 export default function VirtualCountriesList() {

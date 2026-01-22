@@ -1,8 +1,8 @@
 import fileClient from '../request-clients/file-client';
 import httpClient from '../request-clients/http-client';
 import type { IRequestClient } from '../request-clients/types';
-import constants from '../services/constants.service';
-import logger from '../services/logger.service';
+import constants from '../constants.service';
+import logger from '../logger.service';
 import type { CountryFields, ICountry } from './types';
 
 class CountryApiProvider {

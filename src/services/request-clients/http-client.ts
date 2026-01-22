@@ -1,5 +1,5 @@
 import type { CountryFields, ICountry } from '../providers/types';
-import constants from '../services/constants.service';
+import constants from '../constants.service';
 import type { IRequestClient } from './types';
 
 class HttpClient implements IRequestClient {

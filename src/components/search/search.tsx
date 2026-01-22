@@ -1,12 +1,15 @@
 import DOMPurify from 'dompurify';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setInputValue, setSearchQuery } from '../../slices/search-slice';
+import { useAppDispatch, useAppSelector } from '@custom-hooks/hooks';
+import {
+  setInputValue,
+  setSearchQuery,
+} from '@redux-settings/slices/search-slice';
 import './search.css';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useDebouncedCallback } from 'use-debounce';
 import { useQuery } from '@tanstack/react-query';
-import type { ICountry } from '../../providers/types';
-import { MemoIcon } from '../memo-icon/memo-icon';
+import type { ICountry } from '@services/providers/types';
+import { MemoIcon } from '@components/memo-icon/memo-icon';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
 

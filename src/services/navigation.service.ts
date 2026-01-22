@@ -1,7 +1,8 @@
 import type { NavigateFunction } from 'react-router-dom';
-import type { ICountry } from '../providers/types';
-import i18n from '../i18n/i18n-setup';
+import type { ICountry } from './providers/types';
+import i18n from '@i18n-next/i18n';
 import constants from './constants.service';
+import type { Location } from 'react-router-dom';
 
 class NavigationService {
   private navigate: NavigateFunction;
@@ -27,6 +28,10 @@ class NavigationService {
     } else {
       this.navigate?.(-1);
     }
+  }
+
+  public removeFirstSegmentFromPath(location: Location): string {
+    return `/${location.pathname.split('/').slice(2).filter(Boolean).join('/')}${location.search}`;
   }
 
   private getLangSegment() {

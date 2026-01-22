@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import type { ICountry } from '../providers/types';
+import type { ICountry } from './providers/types';
 import logger from './logger.service';
-import i18n from '../i18n/i18n-setup';
+import i18n from '@i18n-next/i18n';
 import constants from './constants.service';
 
 class UrlService {
