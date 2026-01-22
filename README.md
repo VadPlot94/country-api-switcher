@@ -1,9 +1,11 @@
 # REST Countries API with Color Theme Switcher
 
 [![Rsbuild](https://img.shields.io/badge/built%20with-Rsbuild-%2300d8ff?style=flat-square&logo=webpack)](https://rsbuild.dev/)
-[![React](https://img.shields.io/badge/React-18+-61DAFB?style=flat-square&logo=react)](https://react.dev/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![TanStack Query](https://img.shields.io/badge/TanStack%20Query-5+-FF4154?style=flat-square&logo=react-query)](https://tanstack.com/query)
 [![Vitest](https://img.shields.io/badge/tested%20with-Vitest-6E9EF0?style=flat-square&logo=vite)](https://vitest.dev/)
+[![i18next](https://img.shields.io/badge/i18n-i18next-26A69A?style=flat-square)](https://www.i18next.com/)
 
 Modern, responsive single-page application built for the Frontend Mentor challenge.
 
@@ -50,9 +52,9 @@ npm run test:coverage
 ## 🚀 Tech Stack (used technologies)
 
 - **Build Tool**: Rsbuild (Rspack-based, extremely fast)
-- **Frontend**: React 18+, TypeScript
+- **Frontend**: React 19, TypeScript 5
 - **Routing**: React Router v6
-- **Data Fetching & Cache**: TanStack Query (React Query) (manage/request API data instead fetch)
+- **Data Fetching & Cache**: TanStack Query (React Query) v5 (manage/request API data instead fetch)
 - **Virtualization**: TanStack Virtual (for virtual country list scrolling)
 - **State Management**: Redux Toolkit + RTK Query (optional / internal UI state management)
 - **Styling**: SCSS + BEM methodology (mixins), CSS Modules (experimental - try a bit/not implemented)
@@ -60,11 +62,12 @@ npm run test:coverage
 - **Internationalization**: i18next + react-i18next + browser language detector
 - **Schema Validation**: Zod (URL params & queries validation before usage), DOMPurify (XSS protection for search query)
 - **Testing**: Vitest + React Testing Library (unit tests)
+- **Code quality**: Eslint + Prettier (import sorting, aliases)
 - **Dev Tools**:
   - React Developer Tools + React profiler (for performance)
   - Redux DevTools(similar as Tanstack query devtools - but we invalidate here not API data but inner state of React application)
   - TanStack Query Devtools(invalidate/reload/trigger errors for getting API data)
-- **Other**: Eslint + Prettier (import sorting, aliases)
+- **Other**: -
 
 ## ✨ Features (Functional requirements)
 
