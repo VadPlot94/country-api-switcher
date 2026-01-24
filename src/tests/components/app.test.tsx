@@ -20,15 +20,13 @@ describe('App Component', () => {
     vi.clearAllMocks();
   });
 
-  it('renders Header', () => {
-    renderApp();
-    expect(screen.getByRole('banner')).toBeInTheDocument();
-  });
-
-  it('render MainPageLayout on main page (/)', async () => {
+  /* Test will be skipped if use render word in test description.
+     Prevent infinite watch loops by vitest */
+  it('renders Header and MainPageLayout on main page (/)', () => {
     renderApp();
 
     // screen.debug();
+    expect(screen.getByRole('banner')).toBeInTheDocument();
     expect(screen.getByRole('main')).toBeInTheDocument();
     expect(screen.getByRole('searchbox')).toBeInTheDocument();
     const groupElement = screen.getByRole('group');
