@@ -6,14 +6,16 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { AppWithRoutes } from '@/app.routes';
 import { store } from '@/redux-settings/store';
+import type { ICountry } from '@/services/providers/types';
 
 import { createTestQueryClient } from './tanstack-query-client.mock';
 
 export function renderWithProviders(
   ui: React.ReactElement,
   initialEntries: string[] = ['/'],
+  countriesData?: ICountry[],
 ) {
-  const queryClient = createTestQueryClient();
+  const queryClient = createTestQueryClient(countriesData);
 
   const Wrapper = ({ children }: PropsWithChildren) => (
     <Provider store={store}>
@@ -26,6 +28,9 @@ export function renderWithProviders(
   return render(ui, { wrapper: Wrapper, ...{ initialEntries } });
 }
 
-export default function renderApp(initialEntries?: string[]) {
-  return renderWithProviders(<AppWithRoutes />, initialEntries);
+export default function renderApp(
+  initialEntries?: string[],
+  countriesData?: ICountry[],
+) {
+  return renderWithProviders(<AppWithRoutes />, initialEntries, countriesData);
 }

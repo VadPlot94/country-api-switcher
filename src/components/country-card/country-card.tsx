@@ -55,7 +55,12 @@ export default memo(function CountryCard(props: ICountryCardProps) {
         src={country.flags.svg}
         alt={country.flags.alt}
         className="country-card__flag"
+        role="button"
         onClick={() => handleCountryClick(country)}
+        aria-label={t('i18n.countryCard.OpenCountryDescription').replace(
+          '{0}',
+          countryService.getCountryNameLabel(country),
+        )}
         title={t('i18n.countryCard.OpenCountryDescription').replace(
           '{0}',
           countryService.getCountryNameLabel(country),

@@ -1,5 +1,4 @@
 import '../app.scss';
-import '@i18n-next/i18n';
 
 import { useSearchParams } from 'react-router-dom';
 

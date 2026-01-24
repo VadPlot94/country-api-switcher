@@ -72,7 +72,10 @@ export default function CountriesList() {
   }
 
   return (
-    <div className="countries-list">
+    <div
+      className="countries-list"
+      role="region"
+    >
       {countriesListAfterSelection.map((country) => {
         return (
           <CountryCard

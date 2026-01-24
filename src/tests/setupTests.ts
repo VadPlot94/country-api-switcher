@@ -5,8 +5,10 @@ import * as matchers from '@testing-library/jest-dom/matchers';
 
 import mock18n from './test-utils/i18n.mock';
 import mockLocalStorage from './test-utils/local-storage.mock';
+import mockQueryClient from './test-utils/tanstack-query-client.mock';
 
 expect.extend(matchers);
 
 mockLocalStorage();
 mock18n();
+mockQueryClient();
