@@ -1,10 +1,71 @@
-image: node:latest
+# Use a recent, lightweight Node.js image
+image: node:20-alpine
 
+# Define pipeline stages in logical order
+stages:
+  - install
+  - test
+  - build
+  - deploy
+
+# Cache node_modules to speed up subsequent jobs
+cache:
+  key:
+    files:
+      - package-lock.json           # Change key when lockfile updates
+  paths:
+    - node_modules/
+
+# Install dependencies once and cache them
+install:
+  stage: install
+  script:
+    - npm ci --prefer-offline --no-audit --progress=false
+  cache:
+    paths:
+      - node_modules/
+    policy: pull-push
+
+# Run Vitest tests + generate coverage
+test:
+  stage: test
+  script:
+    - npm run test -- --run --coverage
+  artifacts:
+    when: always
+    paths:
+      - coverage/
+    expire_in: 7 days
+    reports:
+      junit: coverage/junit.xml                        # For GitLab Test Reports
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml         # For Coverage visualization in MR
+  cache:
+    paths:
+      - node_modules/
+    policy: pull
+
+# Build the production bundle
+build:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+  cache:
+    paths:
+      - node_modules/
+    policy: pull
+  only:
+    - main
+
+# Deploy to GitLab Pages (only on main branch)
 pages:
   stage: deploy
   script:
-    - npm install
-    - npm run build
     - rm -rf public
     - mv dist public
   artifacts:

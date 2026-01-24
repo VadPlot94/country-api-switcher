@@ -14,10 +14,16 @@ export default defineConfig({
     // css: true, // handle css in js modules
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
     exclude: ['**/node_modules/**', '**/dist/**'],
+    reporters: ['default', 'junit'],
+    outputFile: {
+        junit: './coverage/junit.xml',
+      },
 
     coverage: {
+      enabled: true,
       provider: 'v8', // or 'istanbul'
-      reporter: ['text', 'json', 'html'],
+      reporter: ['text', 'json', 'html', 'cobertura'],
+      reportsDirectory: './coverage',
       include: ['src/tests/**/*.{ts,tsx}', 'src/tests/**/*.spec.{ts,tsx}'],
       exclude: ['src/**/*.d.ts', '**/node_modules/**', '**/dist/**'],
     },
