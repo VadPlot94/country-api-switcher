@@ -1,4 +1,6 @@
 {
+  "i18n.app.Title": "Countries List App",
+
   "i18n.header.WhereInWorld": "Where in the world?",
   "i18n.header.LightMode": "Light Mode",
   "i18n.header.DarkMode": "Dark Mode",

@@ -13,6 +13,7 @@ export default defineConfig({
       viewport:
         'width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=no',
     },
+    title: 'Countries List App',
     tags: [
       // Will be inserted in head
       {

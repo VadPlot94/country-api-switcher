@@ -176,6 +176,11 @@ npm run test:coverage
 
 - Vitest as modern, fast alternative to Jest for unit tests
 
+### 9. CI / CD
+
+- GitLab CI: tests, coverage, build & Pages deployment
+- Test reports & coverage visualization in MRs
+
 ## 🛠️ TODO / Planned
 
 - Full unit & integration tests (Redux Toolkit slices + components)

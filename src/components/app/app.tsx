@@ -4,12 +4,18 @@ import Header from '@components/header/header';
 import navigationService from '@services/navigation.service';
 import urlService from '@services/url.service';
 import { useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const App = () => {
   const urlParams = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = t('i18n.app.Title');
+  }, []);
 
   useEffect(() => {
     navigationService.init(navigate);

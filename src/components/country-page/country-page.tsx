@@ -15,7 +15,7 @@ import countryApiProvider, {
 import type { ICountry } from '@services/providers/types';
 import urlService from '@services/url.service';
 import { useQuery } from '@tanstack/react-query';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface ICountryPageProps {
@@ -65,6 +65,26 @@ export default function CountryPage(props: ICountryPageProps) {
     );
     return success;
   }, [countryCode, countriesList]);
+
+  useEffect(() => {
+    if (!country || !isValidCountryCode) {
+      return;
+    }
+    document.title = countryService.getCountryNameLabel(country);
+    const faviconLink = document.querySelector(
+      'link[rel="icon"]',
+    ) as HTMLLinkElement;
+    if (faviconLink) {
+      const originalHref = faviconLink.href;
+      faviconLink.href =
+        country.flags.svg || country.flags.png || originalHref;
+      faviconLink.type = country.flags.svg ? 'image/svg+xml' : 'image/png';
+      return () => {
+        faviconLink.href = originalHref;
+        document.title = t('i18n.app.Title');
+      };
+    }
+  }, [isValidCountryCode, country]);
 
   // country = null if countryData = null
   // This happen when open direct url like: http://localhost:3000/country/blabla

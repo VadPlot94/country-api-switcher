@@ -1,4 +1,6 @@
 {
+  "i18n.app.Title": "Приложение: Список стран",
+
   "i18n.header.WhereInWorld": "Где в мире?",
   "i18n.header.LightMode": "Светлая тема",
   "i18n.header.DarkMode": "Темная тема",
