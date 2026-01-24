@@ -71,6 +71,7 @@ export default function FilterDropdown() {
     <div
       className="filter-dropdown"
       ref={filterDropdownMenuDivRef}
+      role="group"
     >
       <button
         id="filter-dropdown-toggle"

@@ -13,7 +13,10 @@ const MainPageLayout = () => {
 
   const isVirtualTable = searchParams.get('virtualTable') === 'true';
   return (
-    <div className="app__countries-layout-container">
+    <div
+      className="app__countries-layout-container"
+      role="main"
+    >
       <div className="app__container-header">
         <Search />
         <FilterDropdown />
