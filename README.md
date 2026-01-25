@@ -1,5 +1,7 @@
 # REST Countries API with Color Theme Switcher
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-00C853?style=for-the-badge&logo=gitlab&logoColor=white)](https://country-api-switcher-919b75.gitlab.io/)
+
 [![Rsbuild](https://img.shields.io/badge/built%20with-Rsbuild-%2300d8ff?style=flat-square&logo=webpack)](https://rsbuild.dev/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
@@ -8,6 +10,24 @@
 [![i18next](https://img.shields.io/badge/i18n-i18next-26A69A?style=flat-square)](https://www.i18next.com/)
 
 Modern, responsive single-page application built for the Frontend Mentor challenge.
+
+## 📸 Screenshots
+
+### Desktop (Main Page)
+
+![Desktop Main Page](public/screenshots/desktop-main.png)
+
+### Mobile (Main Page)
+
+![Mobile Main Page](public/screenshots/mobile-main.png)
+
+### Desktop (Country Detail)
+
+![Desktop Country Detail](public/screenshots/country-description-page.png)
+
+### Mobile (Country Detail)
+
+![Mobile Country Detail](public/screenshots/mobile-country-description-page.png)
 
 ## 📦 Installation & Usage
 
@@ -43,6 +63,7 @@ npm run test:coverage
 
 ## 🔗 Links
 
+- Demo: [Live Demo](https://country-api-switcher-919b75.gitlab.io/)
 - Challenge: [REST Countries API with color theme switcher](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
 - API: [REST Countries API](https://restcountries.com)
   - Offline mode: local JSON file with all countries (`public/assets/countries.v3.1.json`)
