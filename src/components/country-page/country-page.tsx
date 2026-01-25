@@ -15,7 +15,7 @@ import countryApiProvider, {
 import type { ICountry } from '@services/providers/types';
 import urlService from '@services/url.service';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface ICountryPageProps {
@@ -26,6 +26,7 @@ export interface ICountryPageProps {
 
 export default function CountryPage(props: ICountryPageProps) {
   const { countryData, countryCode, isOpenFromUrl } = props;
+  const [isLoadImgError, setLoadImgError] = useState(false);
 
   const { t } = useTranslation();
 
@@ -76,15 +77,28 @@ export default function CountryPage(props: ICountryPageProps) {
     ) as HTMLLinkElement;
     if (faviconLink) {
       const originalHref = faviconLink.href;
-      faviconLink.href =
-        country.flags.svg || country.flags.png || originalHref;
+      const flagUrl = country.flags.svg || country.flags.png || originalHref;
+      faviconLink.href = flagUrl;
       faviconLink.type = country.flags.svg ? 'image/svg+xml' : 'image/png';
+      setEmojiFaviconIfImgLoadFailed(faviconLink, flagUrl);
       return () => {
         faviconLink.href = originalHref;
         document.title = t('i18n.app.Title');
       };
     }
   }, [isValidCountryCode, country]);
+
+  const setEmojiFaviconIfImgLoadFailed = (
+    faviconLink: HTMLLinkElement,
+    flagUrl: string,
+  ) => {
+    const testImg = new Image();
+    testImg.src = flagUrl;
+    testImg.onerror = () => {
+      faviconLink.href = countryService.getEmojiForImg(country.flag);
+      faviconLink.type = 'image/svg+xml';
+    };
+  };
 
   // country = null if countryData = null
   // This happen when open direct url like: http://localhost:3000/country/blabla
@@ -96,7 +110,7 @@ export default function CountryPage(props: ICountryPageProps) {
     if (!isValidCountryCode) {
       return <NotFoundPage />;
     }
-    if (!isSelectedCountryFetching && isSelectedCountryError) {
+    if (!isSelectedCountryFetching && isSelectedCountryError && !countryData) {
       return (
         <NotificationBanner
           message={t('i18n.notificationBanner.ErrorGetCountryByCode').replace(
@@ -129,8 +143,16 @@ export default function CountryPage(props: ICountryPageProps) {
       <div className="country-page__content">
         <div className="country-page__flag">
           <img
-            src={country.flags.svg}
+            src={
+              isLoadImgError
+                ? countryService.getEmojiForImg(country.flag, {
+                    y: '50',
+                    size: 80,
+                  })
+                : country.flags.svg
+            }
             alt={country.flags.alt}
+            onError={() => setLoadImgError(true)}
             className="country-page__flag-img"
           />
         </div>

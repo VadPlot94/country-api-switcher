@@ -67,6 +67,42 @@ class CountryService {
       [],
     );
   }
+
+  public getEmojiForImg(
+    emoji: string,
+    paramSvgData?: { x?: string; y?: string; size?: number },
+  ): string {
+    const defaultSvgData = {
+      size: 90,
+      x: '50',
+      y: '0.82em',
+    };
+    const svgData = Object.assign({}, defaultSvgData, paramSvgData);
+    const safeEmoji = emoji || '🌍';
+    const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <text y="${svgData.y}" font-size="${svgData.size}" text-anchor="middle" x="${svgData.x}">${safeEmoji}</text>
+    </svg>
+  `.trim();
+    return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+  }
+
+  public createImg(flagUrl: string, emoji: string): HTMLImageElement {
+    const testImg = new Image();
+    testImg.src = flagUrl;
+    testImg.onerror = () => {
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+          <text y="0.9em" font-size="90">${emoji}</text>
+        </svg>
+      `;
+
+      testImg.src = encodeURIComponent(svg);
+      // faviconLink.href = `data:image/svg+xml,${encoded}`;
+      // faviconLink.type = 'image/svg+xml';
+    };
+    return testImg;
+  }
 }
 
 const countryService = new CountryService();

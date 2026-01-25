@@ -34,6 +34,7 @@ queryClient.setQueryDefaults(['countriesList'], {
       'region',
       'flags',
       'cca3',
+      'flag',
     ];
     if (i18n.language !== constants.DefaultLanguage) {
       fields.push('translations');

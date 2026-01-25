@@ -11,7 +11,7 @@ import constants from '@services/constants.service';
 import countryService from '@services/country.service';
 import navigationService from '@services/navigation.service';
 import type { ICountry } from '@services/providers/types';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface ICountryCardProps {
@@ -22,6 +22,7 @@ export default memo(function CountryCard(props: ICountryCardProps) {
   const { country } = props;
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const [isLoadImgError, setLoadImgError] = useState(false);
 
   const handleCountryClick = (country: ICountry) => {
     dispatch(setSelectedRegion(null));
@@ -52,8 +53,17 @@ export default memo(function CountryCard(props: ICountryCardProps) {
       onKeyDown={(e) => onCountryCardKeyDown(e, country)}
     >
       <img
-        src={country.flags.svg}
+        src={
+          isLoadImgError
+            ? countryService.getEmojiForImg(country.flag, {
+                y: '78',
+                x: '50',
+                size: 80,
+              })
+            : country.flags.svg
+        }
         alt={country.flags.alt}
+        onError={() => setLoadImgError(true)}
         className="country-card__flag"
         role="button"
         onClick={() => handleCountryClick(country)}
