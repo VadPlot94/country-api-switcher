@@ -117,7 +117,7 @@ npm run test:coverage
     | `/country/ITA`       | Country description page (Italy)                             |       EN |
     | `/ru/country/ITA`    | Country description page (Italy)                             |       RU |
     | `/en/country/ITA`    | Country description page (Italy) (redirect → `/country/ITA`) |       EN |
-    | `/fr/country/ITA`    | Country description page (Italy) (redirect → `/country/ITA`) |       EN |
+    | `/fr/country/ITA`    | Unsupported lang (redirect → `/country/ITA`)                 |       EN |
     | `/blabla`            | Redirect to `/` (EN)                                         |       EN |
     | any invalid url path | Not Found page                                               |        — |
 

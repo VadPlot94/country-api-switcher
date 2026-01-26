@@ -8,6 +8,9 @@ import { rsBuildAliases } from './alias-config';
 export default defineConfig({
   plugins: [pluginReact(), pluginSass()],
   resolve: { alias: rsBuildAliases },
+  output: {
+    assetPrefix: '/country-api-switcher/',
+  },
   html: {
     meta: {
       viewport:
