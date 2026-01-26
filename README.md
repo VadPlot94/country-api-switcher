@@ -108,12 +108,15 @@ npm run test:coverage
   - Realized routes: main page(`/:lang?`), country description page(`:lang?/country/:cca3`), not found page(`*` - any invalid url)
   - Transferring selected country through navigation state
   - Redirection to supported languages
+  - GitLab CI Live Site not support lang segment: `/ru` → use query param instead: `/?lng=ru`
   - Examples (`ITA` is cca3 code for appropriate country):
 
     | URL example          | Result                                                       | Language |
     | :------------------- | ------------------------------------------------------------ | -------: |
     | `/`                  | Main page                                                    |       EN |
     | `/ru`                | Main page                                                    |       RU |
+    | `/?lng=ru`           | Main page                                                    |       RU |
+    | `/?virtualTable=true`| Main page (with virtual scrolling for countries list)        |       EN |
     | `/country/ITA`       | Country description page (Italy)                             |       EN |
     | `/ru/country/ITA`    | Country description page (Italy)                             |       RU |
     | `/en/country/ITA`    | Country description page (Italy) (redirect → `/country/ITA`) |       EN |
