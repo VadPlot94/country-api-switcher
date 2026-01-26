@@ -9,7 +9,9 @@ export default defineConfig({
   plugins: [pluginReact(), pluginSass()],
   resolve: { alias: rsBuildAliases },
   output: {
-    assetPrefix: process?.env?.GITHUB_ACTIONS ? '/country-api-switcher/' : '/',
+    // Github deploy at folder country-api-switcher (name of the repo)
+    // then need to change base url to it
+    assetPrefix: process?.env?.GITHUB_ACTIONS && process?.env?.NODE_ENV !== 'development' ? '/country-api-switcher/' : '/',
   },
   html: {
     meta: {

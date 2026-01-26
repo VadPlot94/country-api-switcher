@@ -4,6 +4,9 @@ export enum Theme {
 }
 
 class ConstantsService {
+  // BASE_URL get value from assetPrefix (rsbuild.config.ts)
+  // Used for GitHub deploy
+  public BaseUrl = import.meta.env.BASE_URL || '/';
   private APICountriesUrl = 'https://restcountries.com/';
   // Fields inside API can be changed in different versions
   private CountriesApiVersion = 'v3.1';
@@ -12,7 +15,7 @@ class ConstantsService {
     AllCountries: `${this.APICountriesUrl}${this.CountriesApiVersion}/all?fields=`,
     CountryByCca3Code: `${this.APICountriesUrl}${this.CountriesApiVersion}/alpha/{code}`,
   };
-  public CountriesJsonFilePath = '/assets/countries.v3.1.json';
+  public CountriesJsonFilePath = `${this.BaseUrl}assets/countries.v3.1.json`;
   // API forbid request more then 10 fields at once due to performance impact
   public MaxApiFieldsCount = 10;
 
