@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [pluginReact(), pluginSass()],
   resolve: { alias: rsBuildAliases },
   output: {
-    assetPrefix: '/country-api-switcher/',
+    assetPrefix: process?.env?.GITHUB_ACTIONS ? '/country-api-switcher/' : '/',
   },
   html: {
     meta: {
