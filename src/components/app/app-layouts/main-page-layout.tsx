@@ -10,7 +10,8 @@ import Search from '../../search/search';
 const MainPageLayout = () => {
   const [searchParams] = useSearchParams();
 
-  const isVirtualTable = searchParams.get('virtualTable')?.toLowerCase() === 'true';
+  const isVirtualTable =
+    searchParams.get('virtualTable')?.toLowerCase() === 'true';
   return (
     <div
       className="app__countries-layout-container"
