@@ -44,38 +44,6 @@ export default function VirtualCountriesList() {
 
   const isMobile = useMediaQuery('(max-width: 615px)');
 
-  if (isPending) {
-    return <Loader />;
-  }
-  if (isError) {
-    return (
-      <NotificationBanner
-        message={t('i18n.notificationBanner.ErrorGetCountriesListAPI')}
-        icon={ExclamationTriangleIcon}
-        isError
-        buttonName="Try Again"
-      />
-    );
-  }
-
-  if (!countryService.isCountriesListAvailable(countriesList)) {
-    return (
-      <NotificationBanner
-        message={t('i18n.notificationBanner.CountriesListEmpty')}
-        icon={ExclamationCircleIcon}
-      />
-    );
-  }
-
-  if (!countryService.isCountriesListAvailable(countriesListAfterSelection)) {
-    return (
-      <NotificationBanner
-        message={t('i18n.notificationBanner.NoMatchingCountries')}
-        icon={ExclamationCircleIcon}
-      />
-    );
-  }
-
   const countryRowContainerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const gap = 25;
@@ -138,7 +106,6 @@ export default function VirtualCountriesList() {
     overscan: 10,
     // measureElement
   });
-  const virtualRows = virtualizer.getVirtualItems();
 
   if (isPending) {
     return <Loader />;
@@ -171,6 +138,8 @@ export default function VirtualCountriesList() {
       />
     );
   }
+
+  const virtualRows = virtualizer.getVirtualItems();
 
   return (
     <div
