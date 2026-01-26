@@ -63,6 +63,7 @@ npm run test:coverage
 
 ## 🔗 Links
 
+- GitHub Repo: [GitHub](https://github.com/VadPlot94/country-api-switcher)
 - Demo: [Live Demo](https://country-api-switcher-919b75.gitlab.io/)
 - Challenge: [REST Countries API with color theme switcher](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
 - API: [REST Countries API](https://restcountries.com)
