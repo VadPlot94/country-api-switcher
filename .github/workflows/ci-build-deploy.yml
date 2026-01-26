@@ -1,0 +1,98 @@
+name: CI → Tests → Coverage → Build → Deploy GH Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write          # for deploy on Pages
+  id-token: write       # for OIDC auth in deploy-pages
+  pull-requests: write  # for comments with coverage in PR
+
+concurrency:
+  group: "pages-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit --progress=false
+
+      - name: 🧪 Run Vitest + coverage
+        run: npm run test -- --run --coverage
+
+      # Genarate pretty comment in  Pull Request + summary
+      - name: 📊 Coverage Report in PR / Summary
+        uses: davelosert/vitest-coverage-report-action@v2
+        if: always()
+        with:
+          viteCoveragePath: './coverage/cobertura-coverage.xml'
+          jsonCoveragePath: './coverage/coverage-final.json'   # optional
+          fileCoverageMode: all
+          # threshold: 70
+
+      # Save report like artefact(7 days)
+      - name: 📤 Upload coverage artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-reports
+          path: coverage/
+          retention-days: 7
+
+  build-and-deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 📦 Install
+        run: npm ci --prefer-offline --no-audit --progress=false
+
+      - name: 🏗️ Rsbuild production build
+        run: npm run build
+
+      # Important for GitHub Pages (repo name ≠ root domain)
+      - name: 🔧 Add .nojekyll (если нужно отключить Jekyll)
+        run: touch ./dist/.nojekyll
+
+      - name: ⚙️ Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: ⬆️ Upload artifact для Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: 📝 Show deployment URL
+        run: echo "Site deployed → ${{ steps.deployment.outputs.page_url }}"

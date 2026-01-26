@@ -6,6 +6,9 @@ import { viteAliases } from './alias-config';
 
 export default defineConfig({
   plugins: [react()],
+  build: {
+    outDir: 'dist',
+  },
   test: {
     ui: true,
     globals: true,
