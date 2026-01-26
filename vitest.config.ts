@@ -25,7 +25,7 @@ export default defineConfig({
     coverage: {
       enabled: true,
       provider: 'v8', // or 'istanbul'
-      reporter: ['text', 'json', 'html', 'cobertura'],
+      reporter: ['text', 'json', 'html', 'cobertura', 'json-summary'],
       reportsDirectory: './coverage',
       include: ['src/tests/**/*.{ts,tsx}', 'src/tests/**/*.spec.{ts,tsx}'],
       exclude: ['src/**/*.d.ts', '**/node_modules/**', '**/dist/**'],

@@ -43,10 +43,10 @@ jobs:
         uses: davelosert/vitest-coverage-report-action@v2
         if: always()
         with:
-          viteCoveragePath: './coverage/cobertura-coverage.xml'
-          jsonCoveragePath: './coverage/coverage-final.json'   # optional
-          fileCoverageMode: all
-          # threshold: 70
+          json-summary-path: ./coverage/coverage-summary.json
+          json-final-path: ./coverage/coverage-final.json
+          file-coverage-mode: changes
+          threshold-icons: '{"80":"🟡","90":"🟢"}'
 
       # Save report like artefact(7 days)
       - name: 📤 Upload coverage artifacts
