@@ -4,9 +4,15 @@ export enum Theme {
 }
 
 class ConstantsService {
-  // BASE_URL get value from assetPrefix (rsbuild.config.ts)
-  // Used for GitHub deploy
-  public BaseUrl = import.meta.env.BASE_URL || '/';
+  public GithubBaseUrl = '/country-api-switcher';
+  public get BaseUrl() {
+    // Github deploy app with specific url (GitLab directly in root: '/')
+    // Ex: https://{acc_name}.github.io/{repo_name}/ => https://vadplot94.github.io/country-api-switcher/
+    // We need to return {repo_name} from react routing check
+    // ...
+    // This code will execute on build time (on GitHub or Gitlab deploy)
+    return process.env.IS_GITHUB_PAGES ? constants.GithubBaseUrl : '/';
+  }
   private APICountriesUrl = 'https://restcountries.com/';
   // Fields inside API can be changed in different versions
   private CountriesApiVersion = 'v3.1';

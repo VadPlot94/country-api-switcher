@@ -19,9 +19,7 @@ export default defineConfig({
   },
   source: {
     define: {
-      'process.env.IS_GITHUB_PAGES': JSON.stringify(
-        !!process.env.GITHUB_ACTIONS,
-      ),
+      'process.env.IS_GITHUB_PAGES': !!process.env.GITHUB_ACTIONS,
     },
   },
   html: {
