@@ -10,8 +10,19 @@ export default defineConfig({
   resolve: { alias: rsBuildAliases },
   output: {
     // Github deploy at folder country-api-switcher (name of the repo)
+    // Gitlab deploy at '/', also localhost('development') need '/'
     // then need to change base url to it
-    assetPrefix: process?.env?.GITHUB_ACTIONS && process?.env?.NODE_ENV !== 'development' ? '/country-api-switcher/' : '/',
+    assetPrefix:
+      process?.env?.GITHUB_ACTIONS && process?.env?.NODE_ENV !== 'development'
+        ? '/country-api-switcher/'
+        : '/',
+  },
+  source: {
+    define: {
+      'process.env.IS_GITHUB_PAGES': JSON.stringify(
+        !!process.env.GITHUB_ACTIONS,
+      ),
+    },
   },
   html: {
     meta: {

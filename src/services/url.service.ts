@@ -29,16 +29,18 @@ class UrlService {
     .transform((val) => val || constants.DefaultLanguage);
 
   public getBaseName() {
-    const pathname = window.location.pathname;
+    //const pathname = window.location.pathname;
     // Github deploy app with specific url
     // Ex: https://{acc_name}.github.io/{repo_name}/ => https://vadplot94.github.io/country-api-switcher/
     // We need to exclude {repo_name} from react routing check
-    const possibleRepo = pathname.split('/')[1];
-    const knownRepos = [constants.BaseUrl];
+    const isGitHubPages = process.env.IS_GITHUB_PAGES === 'true';
+    return isGitHubPages ? '/country-api-switcher' : '/';
+    // const possibleRepo = pathname.split('/')[1];
+    // const knownRepos = ['country-api-switcher', constants.BaseUrl];
 
-    return possibleRepo && knownRepos.includes(possibleRepo)
-      ? `/${possibleRepo}`
-      : '/';
+    // return possibleRepo && knownRepos.includes(possibleRepo)
+    //   ? `/${possibleRepo}`
+    //   : '/';
   }
 
   public validateCountryCodeParam(
