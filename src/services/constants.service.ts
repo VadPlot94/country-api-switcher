@@ -4,14 +4,14 @@ export enum Theme {
 }
 
 class ConstantsService {
-  public GithubBaseUrl = '/country-api-switcher';
+  // !! Will be resolved at build time - in deploy moment
   public get BaseUrl() {
     // Github deploy app with specific url (GitLab directly in root: '/')
     // Ex: https://{acc_name}.github.io/{repo_name}/ => https://vadplot94.github.io/country-api-switcher/
     // We need to return {repo_name} from react routing check
     // ...
     // This code will execute on build time (on GitHub or Gitlab deploy)
-    return process.env.IS_GITHUB_PAGES ? constants.GithubBaseUrl : '/';
+    return process.env.IS_GITHUB_PAGES ? '/country-api-switcher' : '/';
   }
   private APICountriesUrl = 'https://restcountries.com/';
   // Fields inside API can be changed in different versions
