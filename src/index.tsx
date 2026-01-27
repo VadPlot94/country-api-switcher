@@ -20,7 +20,7 @@ if (rootEl) {
     <React.StrictMode>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <BrowserRouter basename={urlService.getBaseName()}>
+          <BrowserRouter basename={urlService.getBaseName2()}>
             <AppWithRoutes />
           </BrowserRouter>
           {/* Devtools only in dev */}

@@ -79,7 +79,7 @@ jobs:
         run: npm run build
 
       # Important for GitHub Pages (repo name ≠ root domain)
-      - name: 🔧 Add .nojekyll (если нужно отключить Jekyll)
+      - name: 🔧 Add .nojekyll (if need disable Jekyll)
         run: touch ./dist/.nojekyll
 
       - name: ⚙️ Configure GitHub Pages
