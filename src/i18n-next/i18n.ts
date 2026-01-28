@@ -30,6 +30,9 @@ i18n
         // 'navigator',
         'htmlTag',
       ],
+      lookupFromPathIndex: constants.BaseUrl
+        ? constants.BaseUrl.split('/').filter(Boolean).length
+        : 0,
       lookupQuerystring: 'lng',
       caches: [], // ['localStorage', 'cookie'], - disable set lang in localStorage
       lookupLocalStorage: 'i18nextLng',
