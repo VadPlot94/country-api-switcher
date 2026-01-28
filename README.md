@@ -112,7 +112,7 @@ npm run test:coverage
   - Realized routes: main page(`/:lang?`), country description page(`:lang?/country/:cca3`), not found page(`*` - any invalid url)
   - Transferring selected country through navigation state
   - Redirection to supported languages
-  - GitLab/Github Pages can have problems with Deep Linking → return 404 on routing with /:lang? → use query param instead: `/?lng=ru`
+  - GitLab/Github Pages have problems with Deep Linking → return 404 on routing with /:lang? → use query param instead: `/?lng=ru`
   - Examples (`ITA` is cca3 code for appropriate country):
 
     | URL example          | Result                                                       | Language |
@@ -210,6 +210,14 @@ npm run test:coverage
 - GitLab/GitHub CI: tests, coverage, build & Pages deployment
 - Test reports & coverage visualization in MRs
 - GitHub deployed app in it own folder (add BaseUrl using GITHUB_ACTIONS and other env variables)
+- Add Deep Linking support for GitLab/GitHub pages:
+  - GitLab/GitHub pages it is static server
+  - GitLab/GitHub pages has access to index.html app only from his appropriate root path
+  - Replace standard GitHub pages 404.html file with our app index.html for any path (added in Ci yml files)
+  - Now any url will lead to our app index.html (and not to standard 404 GitHub page)
+  - !! GitLab - not support 404.html - more strict static hoisting
+    - need copy index.html in each folder manually (in gitlab.yml) or use other server for deploy
+    - Ex: Versel/Netlify
 
 ## 🛠️ TODO / Planned
 
