@@ -78,6 +78,9 @@ jobs:
       - name: 🏗️ Rsbuild production build
         run: npm run build
 
+      - name: GitHub/GitLab Pages 404.html fallback to index.html (deep linking support)
+        run: cp dist/index.html dist/404.html
+
       # Important for GitHub Pages (repo name ≠ root domain)
       - name: 🔧 Add .nojekyll (if need disable Jekyll)
         run: touch ./dist/.nojekyll
