@@ -12,6 +12,7 @@ export default defineConfig({
     // Github deploy at folder country-api-switcher (name of the repo)
     // Gitlab deploy at '/', also localhost('development') need '/'
     // then need to change base url to it
+    // GITHUB_ACTIONS - get from Github repo `Pages` settings
     assetPrefix:
       process?.env?.GITHUB_ACTIONS && process?.env?.NODE_ENV !== 'development'
         ? '/country-api-switcher/'

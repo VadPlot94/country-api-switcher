@@ -1,7 +1,5 @@
 # REST Countries API with Color Theme Switcher
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-00C853?style=for-the-badge&logo=gitlab&logoColor=white)](https://country-api-switcher-919b75.gitlab.io/)
-
 [![Rsbuild](https://img.shields.io/badge/built%20with-Rsbuild-%2300d8ff?style=flat-square&logo=webpack)](https://rsbuild.dev/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
@@ -10,6 +8,10 @@
 [![i18next](https://img.shields.io/badge/i18n-i18next-26A69A?style=flat-square)](https://www.i18next.com/)
 
 Modern, responsive single-page application built for the Frontend Mentor challenge.
+
+[![Live GitLab Demo](https://img.shields.io/badge/Live%20GitLab%20Page-00C853?style=for-the-badge&logo=gitlab&logoColor=white)](https://country-api-switcher-919b75.gitlab.io/)
+
+[![Live GitHub Demo](https://img.shields.io/badge/Live%20GitHub%20Page-blue?style=for-the-badge&logo=github)](https://vadplot94.github.io/country-api-switcher/)
 
 ## 📸 Screenshots
 
@@ -63,8 +65,10 @@ npm run test:coverage
 
 ## 🔗 Links
 
-- GitHub Repo: [GitHub](https://github.com/VadPlot94/country-api-switcher)
-- Demo: [Live Demo](https://country-api-switcher-919b75.gitlab.io/)
+- GitHub Repo: [GitHub Repo](https://github.com/VadPlot94/country-api-switcher)
+- GitHub Demo: [GitHub Demo](https://vadplot94.github.io/country-api-switcher/)
+- GitLab Repo: [GitLab Repo](https://gitlab.com/frontendmentor4274851/country-api-switcher)
+- GitLab Demo: [GitLab Demo](https://country-api-switcher-919b75.gitlab.io/)
 - Challenge: [REST Countries API with color theme switcher](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
 - API: [REST Countries API](https://restcountries.com)
   - Offline mode: local JSON file with all countries (`public/assets/countries.v3.1.json`)
@@ -108,7 +112,7 @@ npm run test:coverage
   - Realized routes: main page(`/:lang?`), country description page(`:lang?/country/:cca3`), not found page(`*` - any invalid url)
   - Transferring selected country through navigation state
   - Redirection to supported languages
-  - GitLab CI Live Site not support lang segment: `/ru` → use query param instead: `/?lng=ru`
+  - GitLab/Github Pages can have problems with Deep Linking → return 404 on routing with /:lang? → use query param instead: `/?lng=ru`
   - Examples (`ITA` is cca3 code for appropriate country):
 
     | URL example          | Result                                                       | Language |
@@ -201,10 +205,11 @@ npm run test:coverage
 
 - Vitest as modern, fast alternative to Jest for unit tests
 
-### 9. CI / CD
+### 9. CI / CD (Deploy)
 
-- GitLab CI: tests, coverage, build & Pages deployment
+- GitLab/GitHub CI: tests, coverage, build & Pages deployment
 - Test reports & coverage visualization in MRs
+- GitHub deployed app in it own folder (add BaseUrl using GITHUB_ACTIONS and other env variables)
 
 ## 🛠️ TODO / Planned
 
