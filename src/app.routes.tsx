@@ -10,8 +10,16 @@ export function AppWithRoutes() {
     <Routes>
       <Route element={<App />}>
         <Route
+          path="/"
+          element={<MainPageLayout />}
+        />
+        <Route
           path="/:lang?"
           element={<MainPageLayout />}
+        />
+        <Route
+          path="/country/:cca3"
+          element={<CountryPageLayout />}
         />
         <Route
           path=":lang?/country/:cca3"
