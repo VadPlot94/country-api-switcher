@@ -42,24 +42,56 @@ cd country-api-switcher
 # Development & other commands
 # ────────────────────────────────────────────────
 
-# Start development server
-npm run dev
-# → http://localhost:3000 (or custom port)
+This project uses **rsbuild** (instead of Vite/Create React App) as the build tool. Below is a complete list of available npm scripts:
 
-# Build for production
+| Command                  | Description                                                                 | When to use / Notes |
+|--------------------------|-----------------------------------------------------------------------------|---------------------|
+| `npm run dev`            | Starts the development server with HMR (hot module replacement)             | Main command for development |
+| `npm run build`          | Creates an optimized production build in the `/dist` folder                 | Run before deployment |
+| `npm run preview`        | Starts a local static server to preview the production build                | Check how the built app looks and works locally |
+| `npm run format`         | Formats all source files using Prettier (writes changes)                    | Keep code style consistent |
+| `npm run lint`           | Runs ESLint to check for code quality and potential errors                  | Only checks — no fixes |
+| `npm run lint:fix`       | Runs ESLint and automatically fixes fixable problems                        | Use before committing |
+| `npm run format:check`   | Checks if all files are properly formatted (no changes)                     | Used in CI/CD pipelines |
+| `npm run lint:all`       | Runs both formatting and linting with auto-fixes                            | "Fix everything possible" command |
+| `npm run precommit`      | Runs full formatting + linting with fixes (used by pre-commit hook)         | Runs automatically via husky/lint-staged |
+| `npm run ci`             | Runs formatting check + lint check (no auto-fixing)                         | Main command for CI pipelines (GitHub Actions, GitLab CI, etc.) |
+| `npm run test`           | Runs all tests once using Vitest                                            | Standard one-time test run |
+| `npm run test:watch`     | Runs tests in watch mode — re-runs on file changes                          | Great for test-driven development |
+| `npm run test:coverage`  | Runs tests and generates a code coverage report                             | Check test coverage percentage |
+| `npm run test:ui`        | Launches interactive Vitest UI dashboard in the browser                     | Visual test runner — very convenient for debugging |
+| `npm run test:debug`     | Runs tests with Node.js inspector enabled (attach debugger)                 | For deep debugging of failing tests |
+| `npm run test:ui-debug`  | Starts Vitest UI + debug mode (Chrome + inspector)                          | Best combo for visual debugging |
+| `npm run test:ci`        | Runs tests + generates coverage (optimized for CI environments)             | Used in pipelines — no interactive output |
+| `npm run coverage`       | Alias for `test:coverage` — runs tests and shows coverage                   | Same as `test:coverage` |
+
+```
+
+### Quick cheat sheet (most used commands)
+
+```bash
+# Development
+npm run dev
+
+# Build
 npm run build
 
-# Preview production build locally
+# Check production version
 npm run preview
 
-# Run tests (Vitest)
-npm run test
+# Format & lint everything
+npm run lint:all
+# or just before commit
+npm run precommit
 
-# Run tests in watch mode + nice UI dashboard
-npm run test:ui
+# Testing
+npm run test            # one-time run
+npm run test:watch      # during development
+npm run test:ui         # interactive dashboard
+npm run test:coverage   # see coverage report
 
-# Generate coverage report
-npm run test:coverage
+# CI checks
+npm run ci
 
 ```
 
@@ -225,6 +257,7 @@ npm run test:coverage
 - Full unit & integration tests (Redux Toolkit slices + components)
 - Service Worker (Offline work)
 - Explore TanStack Router as alternative (type-safe routing)
+- Git hooks support
 
 ## 📝 Notes
 
