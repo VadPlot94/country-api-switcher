@@ -9,9 +9,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { AppWithRoutes } from './app.routes';
 import { store } from './redux-settings/store';
+import constants from './services/constants.service';
 import fileClient from './services/request-clients/file-client';
 import queryClient from './tanstack-client/tanstack-client';
-import constants from './services/constants.service';
 
 const rootEl = document.getElementById('root');
 if (rootEl) {
@@ -20,7 +20,7 @@ if (rootEl) {
     <React.StrictMode>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <BrowserRouter basename={constants.BaseUrl}>
+          <BrowserRouter basename={constants.BaseUrl || '/'}>
             <AppWithRoutes />
           </BrowserRouter>
           {/* Devtools only in dev */}

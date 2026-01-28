@@ -11,7 +11,9 @@ class ConstantsService {
     // We need to return {repo_name} from react routing check
     // ...
     // This code will execute on build time (on GitHub or Gitlab deploy)
-    return process.env.IS_GITHUB_PAGES ? '/country-api-switcher' : '/';
+    return process.env.IS_GITHUB_PAGES && process.env.NODE_ENV !== 'development'
+      ? '/country-api-switcher'
+      : '';
   }
   private APICountriesUrl = 'https://restcountries.com/';
   // Fields inside API can be changed in different versions
@@ -21,7 +23,7 @@ class ConstantsService {
     AllCountries: `${this.APICountriesUrl}${this.CountriesApiVersion}/all?fields=`,
     CountryByCca3Code: `${this.APICountriesUrl}${this.CountriesApiVersion}/alpha/{code}`,
   };
-  public CountriesJsonFilePath = `${this.BaseUrl}assets/countries.v3.1.json`;
+  public CountriesJsonFilePath = `${this.BaseUrl}/assets/countries.v3.1.json`;
   // API forbid request more then 10 fields at once due to performance impact
   public MaxApiFieldsCount = 10;
 

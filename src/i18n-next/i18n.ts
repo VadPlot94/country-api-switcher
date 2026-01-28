@@ -18,7 +18,7 @@ i18n
       escapeValue: false,
     },
     backend: {
-      loadPath: `${constants.BaseUrl}translations/{{lng}}/{{ns}}.json`,
+      loadPath: `${constants.BaseUrl}/translations/{{lng}}/{{ns}}.json`,
     },
 
     detection: {
