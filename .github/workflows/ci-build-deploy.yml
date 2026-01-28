@@ -79,7 +79,7 @@ jobs:
         run: npm run build
 
       # Add Deep Linking support for GitHub pages:
-        # GitHub pages it is static server
+        # GitHub pages it is static hosting
         # GitHub pages has access to index.html app only from his appropriate root path
         # Replace standard GitHub pages 404.html file with index.html from our app
         # Now any url will lead to our app index.html (and not to standard 404 GitLab page)
