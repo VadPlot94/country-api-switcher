@@ -106,15 +106,12 @@ npm run test:coverage
 - ⚡ High performance: virtualized list (TanStack Virtual), React.memo + hooks
 - 📴 Offline mode (local JSON + future Service Worker)
 - ♿ Accessibility: keyboard navigation(tab-index - using Tab button to interact with page), semantic HTML
-- 🛣️ Deep linking & smart language redirection (Full support only for GitHub Pages)
+- 🛣️ Deep linking & smart language redirection
 - 🛡️ Input sanitization & URL params validation (Zod)
 - 🌐 Routing & Language Behavior(open pages with different urls):
   - Realized routes: main page(`/:lang?`), country description page(`:lang?/country/:cca3`), not found page(`*` - any invalid url)
-  - Transferring selected country through navigation state
-  - Redirection to supported languages
-  - GitLab Pages have problems with Deep Linking:
-    - return GitLab '404 page' for all routes that not main one ('/')
-    - For language switching can be used query param: `/?lng=ru`
+  - Language query param support: `/?lng=ru`
+  - VirtualTable query param support: `/?virtualTable=true`
   - Examples (`ITA` is cca3 code for appropriate country):
 
     | URL example          | Result                                                       | Language |
@@ -158,8 +155,7 @@ npm run test:coverage
   → Keyboard navigation (Tab keyboard button navigation focus support)  
   → Semantic HTML structure
 - Supported languages: English(`en`) & Russian(`ru`)
-- Deep linking support (shareable URLs, possibility to open pages through different understandable for user urls):
-  - Only for GitHub Pages. Gitlab static hosting not support from box multiple urls
+- Deep linking support: shareable URLs, possibility to open pages through different understandable for user urls
 - Internationalization (i18n)  
   → `i18next` core  
   → `react-i18next` integration  
@@ -213,24 +209,25 @@ npm run test:coverage
 - GitLab/GitHub CI: tests, coverage, build & Pages deployment
 - Test reports & coverage visualization in MRs
 - GitHub deployed app in it own folder (add BaseUrl using GITHUB_ACTIONS and other env variables)
-- Add Deep Linking support for GitLab/GitHub pages:
+- Add SPA Deep Linking support for GitLab/GitHub pages:
   - GitLab/GitHub pages it is static hosting
-  - GitLab/GitHub pages has access to index.html app only from his appropriate root path
-  - Need replace standard GitHub pages 404.html file with our app index.html for any path (added in Ci yml files)
-  - Now any url will lead to our app index.html (and not to standard 404 GitHub page)
+  - GitLab/GitHub pages has access to index.html app only from his appropriate root path (not support Deep Linking by default)
+  - GitHub:
+    - Need replace standard GitHub pages 404.html file with our app index.html for any path (added in `ci-build-deploy.yml` file)
+    - Now any url will lead to our app index.html (and not to standard 404 GitHub page)
   - !! GitLab - not support 404.html - more strict static hosting
-    - need copy index.html in each folder manually (in gitlab.yml) (!Not done!)
-    - Or use other server for deploy. Ex: Versel/Netlify
+  - GitLab:
+    - add `_redirects` file in `public` folder
+    - it will redirect any path to index.html app
 
 ## 🛠️ TODO / Planned
 
 - Full unit & integration tests (Redux Toolkit slices + components)
-- Service Worker + Offline-first flags preloading
+- Service Worker (Offline work)
 - Explore TanStack Router as alternative (type-safe routing)
-- Add Deep linking support for GitLab Pages
 
 ## 📝 Notes
 
-- This project experiments with modern tools (Rsbuild + TanStack stack + RTK) to achieve great DX and performance. Some approaches (Inversify DI, full CSS Modules) were tested and removed due to complexity / performance trade-offs.
+- This project experiments with modern tools (React + Rsbuild + TanStack stack) to achieve great DX and performance.
 - Feedback and contributions are welcome! 🚀
 - Made with ❤️ by Vadzim
