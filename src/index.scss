@@ -26,6 +26,10 @@
 
   --outline-tabbing-focus: 1px solid var(--outline-tabbing-focus-color);
   --outline-offset-tabbing-focus: 1px;
+
+  // smooth switch between light and dark theme
+  transition: background-color 0.4s ease, color 0.4s ease;
+  transition: color 0.4s ease, color 0.4s ease;
 }
 
 * {
